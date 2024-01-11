@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-.content-wrapper {
-  @apply max-w-7xl mx-auto px-10;
+@layer components {
+  .button {
+    @apply px-8 py-2 bg-green-light text-white font-bold rounded-sm;
+  }
+
+  .content-wrapper {
+    @apply max-w-7xl mx-auto px-10;
+  }
+
+  .section {
+    @apply py-28;
+  }
+
+  .section .section-header {
+    @apply text-black max-w-3xl mx-auto text-center pb-24 space-y-4;
+  }
+
+  .section .section-header h2 {
+    @apply text-7xl font-black;
+  }
+
+  .section .section-header p {
+    @apply text-gray-500 text-2xl;
+  }
 }
