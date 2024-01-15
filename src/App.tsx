@@ -37,6 +37,7 @@ import FaqsAccordion from "./components/FaqsAccordion";
 
 // Contact Us
 import contactBg from "./assets/contact_bg.png";
+import ContactTriangle from "./components/ContactTriangle";
 
 export default function App() {
   const scrollRelPosition = useScrollRelPosition();
@@ -276,10 +277,9 @@ export default function App() {
             </form>
           </div>
           <div 
-            className="relative w-1/2 bg-gray-200 bg-center bg-cover"
+            className="flex flex-col w-1/2 bg-gray-200 bg-center bg-cover"
             style={{backgroundImage: `url(${contactBg})`}}>
-            <div className="absolute top-0 left-0 h-0 w-0 border-t-[390px] border-t-yellow-light border-r-[100px] border-r-transparent"></div>
-            <div className="absolute bottom-0 left-0 h-0 w-0 border-b-[390px] border-b-yellow-light border-r-[100px] border-r-transparent"></div>
+            <ContactTriangle className="text-yellow-light" />
           </div>
         </div>
       </section>
