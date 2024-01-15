@@ -26,6 +26,7 @@ import { useEffect, useState } from "react";
 import { cn } from "./utilities";
 
 // Engagement Data
+import partners from "./data/partners";
 import engagements from "./data/engagements";
 
 // Community Data
@@ -201,6 +202,15 @@ export default function App() {
           <div className="section-header">
             <h2 className="text-green-light">Engagements</h2>
             <p>DICE has participated in events from various tech companies and organizations and in and out of the city.</p>
+
+            {/* Partner logos */}
+            <div className="lg:-mx-48 flex flex-wrap items-center justify-center pt-2">
+              {partners.map(p => (
+                <div className="p-4">
+                  <img src={p.logo} alt={p.name} />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div>

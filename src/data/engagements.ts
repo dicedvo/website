@@ -1,9 +1,9 @@
 // Event Images
-import diceAcquaintancePartyImage from "../assets/community_events/dice_acquaintance_party.png";
-import dsssImage from "../assets/community_events/dsss.png";
+import diceAcquaintancePartyImage from "../assets/engagements/dice_acquaintance_party.png";
+import dsssImage from "../assets/engagements/dsss.png";
 
-// Partner Logos
-import ideasDavaoLogo from "../assets/partners/ideas_davao.png"
+// Partners
+import { Partner, partnersByName } from "./partners";
 
 interface Engagement {
     title: string;
@@ -11,10 +11,7 @@ interface Engagement {
     description: string;
     date: string;
     location: string;
-    collaborators?: {
-        name: string;
-        logo: string;
-    }[]
+    collaborators?: Partner[]
 }
 
 const engagements: Engagement[] = [
@@ -31,12 +28,7 @@ const engagements: Engagement[] = [
         location: 'Mapúa MCM',
         description: "DICE participated in the 1st Student Start-up Summit by hosting the event and providing speakers and volunteers. DICE also coordinated with IDEAS Davao, MMCM, and other sponsors to support the event. The event was a success, with positive feedback from participants.",
         image: dsssImage,
-        collaborators: [
-            {
-                name: 'IDEAS Davao',
-                logo: ideasDavaoLogo
-            }
-        ]
+        collaborators: partnersByName('IDEAS Davao')
     }
 ];
 

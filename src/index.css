@@ -16,7 +16,7 @@
   }
 
   .section .section-header {
-    @apply text-black max-w-3xl mx-auto text-center pb-24 space-y-4;
+    @apply flex flex-col items-center text-black max-w-3xl mx-auto text-center pb-24 space-y-4;
   }
 
   .section .section-header h2 {
