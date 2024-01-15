@@ -54,7 +54,7 @@ export default function EngagementsCarousel({ data }: {
           <div className="swiper-wrapper">
             {data.map((e) => (
               <div key={`e_${e.title}`} className="swiper-slide max-w-7xl">
-                <div className="m-4  bg-white border shadow-lg flex min-h-[35rem] h-full">
+                <div className="m-4 bg-white border shadow-lg flex min-h-[40rem] h-full">
                   <div style={{ backgroundImage: `url(${e.image})` }} className="w-1/2 bg-center bg-cover bg-no-repeat"></div>
                   <div className="w-1/2 p-12 flex flex-col">
                     <h3 className="text-5xl font-black mb-4">{e.title}</h3>
@@ -70,7 +70,7 @@ export default function EngagementsCarousel({ data }: {
                     </div>
                     <p className="text-lg max-h-48 text-ellipsis overflow-hidden whitespace-normal">{e.description}</p>
                     {e.collaborators && (<div className="pt-8 mt-auto">
-                      <p className="font-medium">In collaboration with:</p>
+                      <p className="font-medium">{e.collaboratorLabelText ?? 'In collaboration with:'}</p>
                       <div className="flex flex-wrap items-center -mx-4">
                         {e.collaborators.map(c => (
                           <div className="p-4 w-1/2" key={`e_${e.title}_c_${c.name}`}>

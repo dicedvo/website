@@ -11,6 +11,7 @@ export interface Engagement {
     description: string;
     date: string;
     location: string;
+    collaboratorLabelText?: string;
     collaborators?: Partner[]
 }
 
