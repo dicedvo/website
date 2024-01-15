@@ -202,7 +202,7 @@ export default function App() {
 
                   <h3 className="text-2xl font-black mb-4">{c.name}</h3>
                   <p className="mb-10">{c.description}</p>
-                  <a href={c.url} className="w-full button py-4 text-xl mt-auto">Visit Website</a>
+                  {c.url && <a href={c.url} className="w-full button py-4 text-xl mt-auto">Visit Website</a>}
                 </div>
               </div>
             ))}
