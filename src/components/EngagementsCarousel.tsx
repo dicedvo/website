@@ -3,7 +3,7 @@ import { Engagement } from "../data/engagements";
 
 // Engagement Carousel
 import Swiper from "swiper";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css/pagination";
 import "swiper/css";
 
@@ -24,11 +24,14 @@ export default function EngagementsCarousel({ data }: {
 
   function initializeSwiper(ref: HTMLDivElement) {
     setSwiper(new Swiper(ref, {
-      modules: [Pagination],
+      modules: [Autoplay, Pagination],
       // loop: true,
       spaceBetween: 10,
       slidesPerView: 'auto',
       centeredSlides: true,
+      autoplay: {
+        delay: 2000,
+      },
       // grabCursor: true,
       pagination: {
         el: '.swiper-pagination',
