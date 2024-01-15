@@ -242,7 +242,7 @@ export default function App() {
               </div>
               <div className="flex flex-col space-y-2">
                 <label htmlFor="message">Message</label>
-                <textarea name="message" className="border rounded-sm shadow px-8 py-4" id="message"></textarea>
+                <textarea name="message" className="border rounded-sm shadow px-8 py-4" id="message" rows={10}></textarea>
               </div>
               <button type="submit" className="button px-24 py-4 bg-black text-lg self-end">Send</button>
             </form>
@@ -250,7 +250,7 @@ export default function App() {
           <div 
             className="flex flex-col w-1/2 bg-gray-200 bg-center bg-cover"
             style={{backgroundImage: `url(${contactBg})`}}>
-            <ContactTriangle className="text-yellow-light" />
+            <ContactTriangle className="text-yellow-light h-full" />
           </div>
         </div>
       </section>
