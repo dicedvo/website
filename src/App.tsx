@@ -35,6 +35,9 @@ import questions from "./data/faqs";
 import Header from "./components/Header";
 import FaqsAccordion from "./components/FaqsAccordion";
 
+// Contact Us
+import contactBg from "./assets/contact_bg.png";
+
 export default function App() {
   const scrollRelPosition = useScrollRelPosition();
 
@@ -251,7 +254,7 @@ export default function App() {
       {/* Contact Us */}
       <section className="bg-yellow-light">
         <div className="flex">
-          <div className="w-1/2 flex flex-col space-y-4 lg:pl-16 xl:pl-60 p-8 lg:pr-16 lg:py-16">
+          <div className="w-1/2 flex flex-col space-y-4 lg:pl-16 xl:pl-24 2xl:pl-60 p-8 lg:pr-8 lg:py-16">
             <div className="text-left space-y-4 pb-16">
               <h2 className="text-6xl font-black">Contact Us</h2>
               <p className="text-lg">For any questions or concerns, or to learn more about our organization and initiatives, you may reach out to us through this contact form.</p>
@@ -272,8 +275,11 @@ export default function App() {
               <button type="submit" className="button px-24 py-4 bg-black text-lg self-end">Send</button>
             </form>
           </div>
-          <div className="w-1/2 bg-gray-200">
-            <p>Photo goes here</p>
+          <div 
+            className="relative w-1/2 bg-gray-200 bg-center bg-cover"
+            style={{backgroundImage: `url(${contactBg})`}}>
+            <div className="absolute top-0 left-0 h-0 w-0 border-t-[390px] border-t-yellow-light border-r-[100px] border-r-transparent"></div>
+            <div className="absolute bottom-0 left-0 h-0 w-0 border-b-[390px] border-b-yellow-light border-r-[100px] border-r-transparent"></div>
           </div>
         </div>
       </section>
