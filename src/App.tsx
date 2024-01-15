@@ -20,10 +20,6 @@ import missionImageLeft from "./assets/mission_2.png";
 import missionTriangleRight from "./assets/mission_triangle_right.png";
 import missionTriangleLeft from "./assets/mission_triangle_left.png";
 
-// Engagement Icons
-import LocationIcon from "~icons/dice/location";
-import CalendarIcon from "~icons/dice/calendar";
-
 // Engagement Data
 import partners from "./data/partners";
 import engagements from "./data/engagements";
@@ -45,6 +41,7 @@ import LinkedInIcon from "~icons/dice/linkedin";
 import InstagramIcon from "~icons/dice/instagram";
 import FacebookIcon from "~icons/dice/facebook";
 import DiceLogo2 from "./assets/dice-logo-stroke.svg";
+import EngagementsCarousel from "./components/EngagementsCarousel";
 
 export default function App() {
   const scrollRelPosition = useScrollRelPosition();
@@ -100,7 +97,6 @@ export default function App() {
           </div>
 
           <div style={{backgroundImage: `url(${missionTriangleRight})`}} className="z-0 absolute top-0 right-[-13%] h-[957px] w-[457px] bg-no-repeat bg-[top_center]"></div>
-
           <div style={{backgroundImage: `url(${missionTriangleLeft})`}} className="z-0 absolute bottom-0 left-[-13%] h-[957px] w-[457px] bg-no-repeat bg-[bottom_center]"></div>
 
           <div className="relative z-[1] flex flex-col pb-28">
@@ -168,7 +164,7 @@ export default function App() {
       <section className="section relative">
         <div style={{backgroundImage: `url(${missionGridBg})`}} className="z-0 h-[677px] absolute top-0 inset-x-0 bg-[center_top] bg-no-repeat"></div>
 
-        <div className="relative content-wrapper">
+        <div className="relative">
           <div className="section-header">
             <h2 className="text-green-light">Engagements</h2>
             <p>DICE has participated in events from various tech companies and organizations and in and out of the city.</p>
@@ -183,39 +179,7 @@ export default function App() {
             </div>
           </div>
 
-          <div>
-            {/* TODO: add carousel */}
-            {engagements.slice(1, 2).map((e) => (
-              <div className="bg-white border shadow-lg flex" key={`e_${e.title}`}>
-                <div style={{backgroundImage: `url(${e.image})`}} className="min-h-64 w-1/2 bg-center bg-cover bg-no-repeat"></div>
-                <div className="w-1/2 p-12">
-                  <h3 className="text-5xl font-black mb-4">{e.title}</h3>
-                  <div className="flex space-x-4 mb-4">
-                    <div className="flex items-center space-x-2">
-                      <CalendarIcon className="text-blue-light" />
-                      <p className="font-medium">{e.date}</p>
-                    </div>
-
-                    <div className="flex items-center space-x-2">
-                      <LocationIcon className="text-red-light" />
-                      <p className="font-medium">{e.location}</p>
-                    </div>
-                  </div>
-                  <p className="text-lg">{e.description}</p>
-                  {e.collaborators && (<div className="mt-8">
-                    <p className="font-medium">In collaboration with:</p>
-                    <div className="flex flex-wrap items-center -mx-4">
-                      {e.collaborators.map(c => (
-                        <div className="p-4 w-1/2" key={`e_${e.title}_c_${c.name}`}>
-                          <img src={c.logo} alt={c.name} />
-                        </div>
-                      ))}
-                    </div>
-                  </div>)}
-                </div>
-              </div>
-            ))}
-          </div>
+          <EngagementsCarousel data={engagements} />
         </div>
       </section>
 

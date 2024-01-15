@@ -5,7 +5,7 @@ import dsssImage from "../assets/engagements/dsss.png";
 // Partners
 import { Partner, partnersByName } from "./partners";
 
-interface Engagement {
+export interface Engagement {
     title: string;
     image: string;
     description: string;
