@@ -11,7 +11,6 @@ import PeopleIcon from "~icons/dice/people";
 import ConnectIcon from "~icons/dice/connect";
 import BoxIcon from "~icons/dice/box";
 import TrendIcon from "~icons/dice/trend";
-import ArrowDownIcon from "~icons/dice/arrow-down";
 
 // Mission Images
 import missionGridBg from "./assets/mission_grid_bg.png";
@@ -23,8 +22,6 @@ import missionTriangleLeft from "./assets/mission_triangle_left.png";
 // Engagement Icons
 import LocationIcon from "~icons/dice/location";
 import CalendarIcon from "~icons/dice/calendar";
-import { useEffect, useState } from "react";
-import { cn } from "./utilities";
 
 // Engagement Data
 import partners from "./data/partners";
@@ -35,8 +32,8 @@ import communities from "./data/communities";
 
 // FAQs
 import questions from "./data/faqs";
-import { Disclosure } from "@headlessui/react";
 import Header from "./components/Header";
+import FaqsAccordion from "./components/FaqsAccordion";
 
 export default function App() {
   const scrollRelPosition = useScrollRelPosition();
@@ -246,19 +243,7 @@ export default function App() {
           </div>
 
           <div className="max-w-3xl text-left mx-auto">
-            {questions.map((q, i) => (
-              <Disclosure as="div" className="transition-colors border-b hover:bg-gray-200 border-black" key={`question_${i}`}>
-                {({ open }) => (<>
-                  <Disclosure.Button className="w-full py-4 px-8 flex items-center text-left justify-between">
-                    <p className="font-bold">{q.question}</p>
-                    <ArrowDownIcon className={cn("ml-4", open && 'rotate-180')} />
-                  </Disclosure.Button>
-                  <Disclosure.Panel className="py-4 px-8">
-                    <p>{q.answer}</p>
-                  </Disclosure.Panel>
-                </>)}
-              </Disclosure>
-            ))}
+            <FaqsAccordion questions={questions} />
           </div>
         </div>
       </section>
