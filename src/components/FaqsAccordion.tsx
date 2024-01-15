@@ -13,8 +13,6 @@ export default function FaqsAccordion({ questions }: {
     const questionCloseEls = useRef<Record<number, () => void>>({});
 
     useEffect(() => {
-        if (currentOpenedIdx === -1) return;
-
         if (prevCurrentOpenedIdx.current !== -1) {
             questionCloseEls.current[prevCurrentOpenedIdx.current]();
         }
