@@ -42,6 +42,7 @@ import InstagramIcon from "~icons/dice/instagram";
 import FacebookIcon from "~icons/dice/facebook";
 import DiceLogo2 from "./assets/dice-logo-stroke.svg";
 import EngagementsCarousel from "./components/EngagementsCarousel";
+import CommunitiesCarousel from "./components/CommunitiesCarousel";
 
 export default function App() {
   const scrollRelPosition = useScrollRelPosition();
@@ -185,29 +186,12 @@ export default function App() {
 
       {/* The Communities */}
       <section className="section">
-        <div className="content-wrapper">
-          <div className="section-header">
-            <h2>The <span className="text-pink-light">Communities</span></h2>
-            <p>These student organizations encompass a network of tech enthusiast groups with whom we have established valuable connections through our previous collaborative events, fostering a strong and supportive community.</p>
-          </div>
-
-          <div className="flex flex-wrap justify-center -mt-20">
-            {/* TODO: add carousel */}
-            {communities.map((c) => (
-              <div className="min-h-[2rem] w-1/3 px-2 pb-2 pt-20" key={`community_${c.name}`}>
-                <div className="h-full border shadow-lg flex flex-col p-8 items-center text-center rounded-md">
-                  <div className="bg-white p-2 w-32 min-h-32 -mt-20 shadow-md rounded-full border mb-4 flex items-center justify-center">
-                    <img src={c.logo} alt={c.name} className="h-auto w-24" />
-                  </div>
-
-                  <h3 className="text-2xl font-black mb-4">{c.name}</h3>
-                  <p className="mb-10">{c.description}</p>
-                  {c.url && <a href={c.url} className="w-full button py-4 text-xl mt-auto">Visit Website</a>}
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="section-header">
+          <h2>The <span className="text-pink-light">Communities</span></h2>
+          <p>These student organizations encompass a network of tech enthusiast groups with whom we have established valuable connections through our previous collaborative events, fostering a strong and supportive community.</p>
         </div>
+
+        <CommunitiesCarousel data={communities} />
       </section>
 
       {/* Frequently Asked Questions */}

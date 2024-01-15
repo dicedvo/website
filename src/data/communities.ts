@@ -11,7 +11,7 @@ import umEnigmaLogo from '../assets/communities/um_enigma.png';
 import mmcmApiLogo from '../assets/communities/mmcm_api.png';
 import bitsLogo from '../assets/communities/bits.png';
 
-interface Community {
+export interface Community {
     logo: string;
     name: string;
     description: string;
