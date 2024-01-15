@@ -1,4 +1,4 @@
-import { Disclosure, DisclosureProps } from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { FAQ } from "../data/faqs";
 
 import ArrowDownIcon from "~icons/dice/arrow-down";
