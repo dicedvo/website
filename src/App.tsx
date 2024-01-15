@@ -49,7 +49,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    if (scrollPos > 0.15) {
+    if (scrollPos > 0.14) {
       setNavbarVariant('light');
     } else {
       setNavbarVariant('dark');
