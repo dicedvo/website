@@ -4,7 +4,7 @@
 
 @layer components {
   .button {
-    @apply px-8 py-2 bg-green-light text-white font-bold rounded-sm;
+    @apply px-8 py-2 bg-green-light-500 hover:bg-green-light-600 transition-colors text-white font-bold rounded-sm;
   }
 
   .content-wrapper {

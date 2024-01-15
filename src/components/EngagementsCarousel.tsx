@@ -63,11 +63,11 @@ export default function EngagementsCarousel({ data }: {
                     <h3 className="text-5xl font-black mb-4">{e.title}</h3>
                     <div className="flex space-x-4 mb-4">
                       <div className="flex items-center space-x-2">
-                        <CalendarIcon className="text-blue-light" />
+                        <CalendarIcon className="text-blue-light-500" />
                         <p className="font-medium">{e.date}</p>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <LocationIcon className="text-red-light" />
+                        <LocationIcon className="text-red-light-500" />
                         <p className="font-medium">{e.location}</p>
                       </div>
                     </div>

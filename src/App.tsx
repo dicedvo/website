@@ -56,23 +56,23 @@ export default function App() {
         <div className="relative z-[2] max-w-5xl mx-auto px-10 py-44 flex flex-col items-center space-y-20">
           <div className="space-y-12 flex flex-col items-center">
             <div className="flex space-x-6 items-center">
-              <div className="p-4 bg-red-light rounded-full">
+              <div className="p-4 bg-red-light-500 rounded-full">
                 <ComputerIcon className="h-12 w-12" />
               </div>
 
-              <div className="p-4 bg-yellow rounded-full">
+              <div className="p-4 bg-yellow-500 rounded-full">
                 <PeopleIcon className="h-12 w-12" />
               </div>
 
-              <div className="p-4 bg-green-light rounded-full">
+              <div className="p-4 bg-green-light-500 rounded-full">
                 <ConnectIcon className="h-12 w-12" />
               </div>
 
-              <div className="p-4 bg-blue-light rounded-full">
+              <div className="p-4 bg-blue-light-500 rounded-full">
                 <BoxIcon className="h-12 w-12" />
               </div>
 
-              <div className="p-4 bg-pink-light rounded-full">
+              <div className="p-4 bg-pink-light-500 rounded-full">
                 <TrendIcon className="h-12 w-12" />
               </div>
             </div>
@@ -103,7 +103,7 @@ export default function App() {
           <div className="relative z-[1] flex flex-col pb-28">
             <div className="flex items-center pb-10">
               <div className="w-[62%] space-y-8">
-                <h3 className="block bg-red-light text-white p-4 text-5xl font-extrabold">We believe in the power of collective action.</h3>
+                <h3 className="block bg-red-light-500 text-white p-4 text-5xl font-extrabold">We believe in the power of collective action.</h3>
                 <p className="font-medium text-2xl">We provide a platform for student organizations to come together, exchange ideas, and share resources. Through our support and guidance, we enable our members to unleash their full potential and make a lasting impact in their respective fields.</p>
               </div>
 
@@ -114,7 +114,7 @@ export default function App() {
 
             <div className="flex flex-row-reverse items-center pt-10">
               <div className="w-[62%] space-y-8">
-                <h3 className="bg-pink-light text-white p-4 text-5xl font-extrabold">Our purpose is to empower student communities through collaboration.</h3>
+                <h3 className="bg-pink-light-500 text-white p-4 text-5xl font-extrabold">Our purpose is to empower student communities through collaboration.</h3>
                 <p className="font-medium text-2xl">We understand the challenges faced by student organizations and the need for a strong support system that fosters growth and innovation. That's why we have created a dynamic community that brings together like-minded individuals from various schools, backgrounds, and interests.</p>
               </div>
 
@@ -137,24 +137,24 @@ export default function App() {
 
           <div className="flex">
             <div className="w-1/3 space-y-3 pr-3">
-            <div className="inline-block p-4 bg-blue-light rounded-full mb-2">
+            <div className="inline-block p-4 bg-blue-light-500 rounded-full mb-2">
                 <BoxIcon className="h-12 w-12" />
               </div>
               <h2 className="text-blue-light text-4xl uppercase font-bold">Create</h2>
               <p className="text-2xl">Create a <b>collaborative of student-run tech organizations</b> that empower the youth of Davao City to pursue their passions in technology.</p>
             </div>
             <div className="w-1/3 space-y-3 px-3 border-x">
-              <div className="inline-block p-4 bg-green-light rounded-full mb-2">
+              <div className="inline-block p-4 bg-green-light-500 rounded-full mb-2">
                 <ConnectIcon className="h-12 w-12" />
               </div>
               <h2 className="text-green-light text-4xl uppercase font-bold">Collaborate</h2>
               <p className="text-2xl">We envision a future where <b>our member organizations collaborate seamlessly,</b> sharing resources and best practices to enhance their reach and impact. </p>
             </div>
             <div className="w-1/3 space-y-3 pl-3">
-              <div className="inline-block p-4 bg-yellow rounded-full mb-2">
+              <div className="inline-block p-4 bg-yellow-500 rounded-full mb-2">
                 <PeopleIcon className="h-12 w-12" />
               </div>
-              <h2 className="text-yellow text-4xl uppercase font-bold">Lead</h2>
+              <h2 className="text-yellow-500 text-4xl uppercase font-bold">Lead</h2>
               <p className="text-2xl">We envision ourselves as a collective leading force in the promotion of computer education and <b>enabling our members to make an impact on our communities.</b></p>
             </div>
           </div>
@@ -208,7 +208,7 @@ export default function App() {
       </section>
 
       {/* Contact Us */}
-      <section className="bg-yellow-light">
+      <section className="bg-yellow-light-500">
         <div className="flex">
           <div className="w-1/2 flex flex-col space-y-4 lg:pl-16 xl:pl-24 2xl:pl-60 p-8 lg:pr-8 lg:py-16">
             <div className="text-left space-y-4 pb-16">
@@ -228,13 +228,13 @@ export default function App() {
                 <label htmlFor="message">Message</label>
                 <textarea name="message" className="border rounded-sm shadow px-8 py-4" id="message" rows={10}></textarea>
               </div>
-              <button type="submit" className="button px-24 py-4 bg-black text-lg self-end">Send</button>
+              <button type="submit" className="button px-24 py-4 bg-gray-600 hover:bg-gray-700 text-lg self-end">Send</button>
             </form>
           </div>
           <div 
             className="flex flex-col w-1/2 bg-gray-200 bg-center bg-cover"
             style={{backgroundImage: `url(${contactBg})`}}>
-            <ContactTriangle className="text-yellow-light h-full" />
+            <ContactTriangle className="text-yellow-light-500 h-full" />
           </div>
         </div>
       </section>
