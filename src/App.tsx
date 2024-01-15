@@ -1,5 +1,6 @@
 
 import useScrollRelPosition from "./hooks/scroll";
+import meta from "./data/meta"
 
 // Hero
 import heroGridBg from "./assets/hero_grid_bg.png";
@@ -38,6 +39,12 @@ import FaqsAccordion from "./components/FaqsAccordion";
 // Contact Us
 import contactBg from "./assets/contact_bg.png";
 import ContactTriangle from "./components/ContactTriangle";
+
+// Footer
+import LinkedInIcon from "~icons/dice/linkedin";
+import InstagramIcon from "~icons/dice/instagram";
+import FacebookIcon from "~icons/dice/facebook";
+import DiceLogo2 from "./assets/dice-logo-stroke.svg";
 
 export default function App() {
   const scrollRelPosition = useScrollRelPosition();
@@ -284,17 +291,23 @@ export default function App() {
         </div>
       </section>
 
-      <footer className="bg-black text-white py-12">
-        <div className="content-wrapper flex flex-col items-center text-center space-y-8">
+      <footer className="relative bg-black text-white py-12">
+        <div style={{
+          backgroundImage: `url(${DiceLogo2})`, 
+          backgroundSize: 'contain',
+          backgroundPosition: '80% center'}}
+          className="absolute top-0 inset-x-0 h-full w-full bg-no-repeat"></div>
+
+        <div className="relative content-wrapper flex flex-col items-center text-center space-y-8">
           <div className="flex flex-col items-center space-y-4">
             <p>Stay in touch with us</p>
             <div className="flex space-x-4">
-              <a href="#">LinkedIn</a>
-              <a href="#">Twitter</a>
-              <a href="#">Facebook</a>
+              <a href={meta.social_links.linkedin} className="text-white hover:text-white/75"><LinkedInIcon /></a>
+              <a href={meta.social_links.instagram} className="text-white hover:text-white/75"><InstagramIcon /></a>
+              <a href={meta.social_links.facebook} className="text-white hover:text-white/75"><FacebookIcon /></a>
             </div>
           </div>
-          <p>Innovate. Create. Collaborate.</p>
+          <p className="text-xl uppercase font-medium pt-2">Innovate. Create. Collaborate.</p>
           <p>&copy; 2024 Davao Interschool Computer Enthusiasts</p>
         </div>
       </footer>
