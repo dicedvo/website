@@ -1,5 +1,5 @@
-// Header
-import Logo from "./components/Logo";
+
+import useScrollRelPosition from "./hooks/scroll";
 
 // Hero
 import heroGridBg from "./assets/hero_grid_bg.png";
@@ -36,57 +36,14 @@ import communities from "./data/communities";
 // FAQs
 import questions from "./data/faqs";
 import { Disclosure } from "@headlessui/react";
+import Header from "./components/Header";
 
 export default function App() {
-  const [scrollPos, setScrollPos] = useState(0);
-  const [navbarVariant, setNavbarVariant] = useState<'light' | 'dark'>('dark');
-
-  function getScrollPercent() {
-    const h = document.documentElement,
-        b = document.body,
-        st = 'scrollTop',
-        sh = 'scrollHeight';
-    return (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight);
-  }
-
-  function monitorScroll() {
-    setScrollPos(getScrollPercent());
-  }
-
-  useEffect(() => {
-    if (scrollPos > 0.14) {
-      setNavbarVariant('light');
-    } else {
-      setNavbarVariant('dark');
-    }
-
-    window.addEventListener('scroll', monitorScroll);
-    return () => {
-      window.removeEventListener('scroll', monitorScroll);
-    }
-  }, [scrollPos]);
+  const scrollRelPosition = useScrollRelPosition();
 
   return (
     <main>
-      <header className={cn(
-        "fixed inset-x-0 top-0 py-5 border-b z-50 transition-colors",
-        {
-          'backdrop-blur-sm text-white border-white border-opacity-70': navbarVariant === 'dark',
-          'bg-white text-black shadow-lg': navbarVariant === 'light'
-        }
-      )}>
-        <div className="content-wrapper flex items-center justify-between mx-auto">
-          <Logo variant={navbarVariant === 'light' ? 'dark' : 'light'} />
-
-          <ul className="flex space-x-8 font-bold">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Engagements</a></li>
-            <li><a href="#">Communities</a></li>
-          </ul>
-
-          <a href="#" className="button">Contact Us</a>
-        </div>
-      </header>
+      <Header variant={scrollRelPosition >= 0.12 ? 'light' : 'dark'} />
 
       {/* Hero */}
       <section style={{paddingTop: 'calc(1.25rem + 88px)', backgroundImage: `url(${heroBg})`}} className="bg-cover bg-no-repeat bg-center text-white relative">
