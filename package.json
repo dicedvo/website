@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.18",
     "autoprefixer": "^10.4.16",
     "clsx": "^2.1.0",
     "react": "^18.2.0",

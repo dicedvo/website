@@ -11,6 +11,7 @@ import PeopleIcon from "~icons/dice/people";
 import ConnectIcon from "~icons/dice/connect";
 import BoxIcon from "~icons/dice/box";
 import TrendIcon from "~icons/dice/trend";
+import ArrowDownIcon from "~icons/dice/arrow-down";
 
 // Mission Images
 import missionGridBg from "./assets/mission_grid_bg.png";
@@ -31,6 +32,10 @@ import engagements from "./data/engagements";
 
 // Community Data
 import communities from "./data/communities";
+
+// FAQs
+import questions from "./data/faqs";
+import { Disclosure } from "@headlessui/react";
 
 export default function App() {
   const [scrollPos, setScrollPos] = useState(0);
@@ -206,7 +211,7 @@ export default function App() {
             {/* Partner logos */}
             <div className="lg:-mx-48 flex flex-wrap items-center justify-center pt-2">
               {partners.map(p => (
-                <div className="p-4">
+                <div key={`partner_${p.name}`} className="p-4">
                   <img src={p.logo} alt={p.name} />
                 </div>
               ))}
@@ -279,15 +284,23 @@ export default function App() {
       {/* Frequently Asked Questions */}
       <section className="section bg-gray-100">
         <div className="content-wrapper">
-          <div className="section-header !max-w-full mx-0">
+          <div className="section-header">
             <h2>Frequently Asked Questions</h2>
           </div>
 
-          <div className="max-w-2xl mx-auto">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div className="py-4 px-8 border-b hover:bg-gray-200 border-black" key={`question_${i}`}>
-                <p>test</p>
-              </div>
+          <div className="max-w-3xl text-left mx-auto">
+            {questions.map((q, i) => (
+              <Disclosure as="div" className="transition-colors border-b hover:bg-gray-200 border-black" key={`question_${i}`}>
+                {({ open }) => (<>
+                  <Disclosure.Button className="w-full py-4 px-8 flex items-center text-left justify-between">
+                    <p className="font-bold">{q.question}</p>
+                    <ArrowDownIcon className={cn("ml-4", open && 'rotate-180')} />
+                  </Disclosure.Button>
+                  <Disclosure.Panel className="py-4 px-8">
+                    <p>{q.answer}</p>
+                  </Disclosure.Panel>
+                </>)}
+              </Disclosure>
             ))}
           </div>
         </div>
@@ -296,7 +309,7 @@ export default function App() {
       {/* Contact Us */}
       <section className="bg-yellow-light">
         <div className="flex">
-          <div className="w-1/2 flex flex-col space-y-4 pl-60 pr-16 py-16">
+          <div className="w-1/2 flex flex-col space-y-4 lg:pl-16 xl:pl-60 p-8 lg:pr-16 lg:py-16">
             <div className="text-left space-y-4 pb-16">
               <h2 className="text-6xl font-black">Contact Us</h2>
               <p className="text-lg">For any questions or concerns, or to learn more about our organization and initiatives, you may reach out to us through this contact form.</p>
