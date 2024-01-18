@@ -9,6 +9,7 @@
     "types": [
       "unplugin-icons/types/react",
       "unplugin-icons/types/astro"
-    ]
+    ],
+    "strictNullChecks": true
   }
 }
