@@ -19,10 +19,6 @@ import missionImageRightLg from "../assets/mission_1_lg.png";
 import missionImageLeft from "../assets/mission_2.png";
 import missionImageLeftLg from "../assets/mission_2_lg.png";
 
-// Engagement Data
-import partners from "../data/partners";
-import engagements from "../data/engagements";
-
 // Community Data
 import communities from "../data/communities";
 
@@ -37,6 +33,12 @@ import ContactTriangle from "../components/ContactTriangle";
 
 import EngagementsCarousel from "../components/EngagementsCarousel";
 import CommunitiesCarousel from "../components/CommunitiesCarousel";
+
+import { getCollection } from "astro:content";
+
+// Engagement Data
+const engagements = await getCollection("engagements");
+const partners = await getCollection("partners");
 ---
 
 <Layout title="Home">
@@ -85,9 +87,9 @@ import CommunitiesCarousel from "../components/CommunitiesCarousel";
                 </div>
             </div>
 
-            <a href="#" class="button md:text-2xl py-4 px-16 rounded-base"
-                >Get Started</a
-            >
+            <a href="#" class="button md:text-2xl py-4 px-16 rounded-base">
+                Get Started
+            </a>
         </div>
 
         <div
@@ -282,17 +284,18 @@ import CommunitiesCarousel from "../components/CommunitiesCarousel";
                 <div
                     class="lg:-mx-48 flex flex-wrap items-center justify-center pt-2"
                 >
-                    {
-                        partners.map((p) => (
-                            <div class="p-2 md:p-4">
-                                <img src={p.logo} alt={p.name} />
-                            </div>
-                        ))
-                    }
+                    {partners.map((p) => (
+                        <div class="p-2 md:p-4">
+                            <img src={p.data.logo.src} alt={p.data.name} />
+                        </div>
+                    ))}
                 </div>
             </div>
 
-            <EngagementsCarousel data={engagements} />
+            <EngagementsCarousel 
+                data={engagements}
+                partners={partners}
+                client:only />
         </div>
     </section>
 
@@ -321,7 +324,7 @@ import CommunitiesCarousel from "../components/CommunitiesCarousel";
             </div>
 
             <div class="max-w-3xl text-left mx-auto">
-                <FaqsAccordion questions={questions} />
+                <FaqsAccordion questions={questions} client:load />
             </div>
         </div>
     </section>

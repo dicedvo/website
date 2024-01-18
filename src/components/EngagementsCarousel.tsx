@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Engagement } from "../data/engagements";
 
 // Engagement Carousel
 import Swiper from "swiper";
@@ -11,9 +10,61 @@ import "swiper/css";
 import LocationIcon from "~icons/dice/location";
 import CalendarIcon from "~icons/dice/calendar";
 import ArrowDownIcon from "~icons/dice/arrow-down";
+import type { CollectionEntry } from "astro:content";
 
-export default function EngagementsCarousel({ data }: {
-  data: Engagement[]
+type FetchPartnerFn = (id: string) => Promise<CollectionEntry<'partners'>>;
+
+function EngagementSlide({ data, fetchPartnerFn }: {
+  data: CollectionEntry<'engagements'>['data']
+  fetchPartnerFn: FetchPartnerFn
+}) {
+  const [collaborators, setCollaborators] = useState<CollectionEntry<'partners'>[]>([]);
+
+  useEffect(() => {
+    if (!data.collaborators) return;
+    Promise.all(data.collaborators.map(fetchPartnerFn))
+      .then(setCollaborators);
+  }, []);
+
+  return (
+    <div className="swiper-slide max-w-7xl">
+      <div className="m-4 bg-white border shadow-lg flex flex-col md:flex-row min-h-[40rem] h-full">
+        <div style={{ backgroundImage: `url(${data.image.src})` }} className="md:w-1/2 h-96 md:h-auto bg-center bg-cover bg-no-repeat"></div>
+        <div className="md:w-1/2 p-8 md:p-12 flex flex-col items-center md:items-start text-center md:text-left">
+          <h3 className="text-3xl md:text-5xl font-black mb-4">{data.title}</h3>
+          <div className="flex flex-col items-center md:items-start md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-4 text-sm md:text-md">
+            <div className="flex items-center space-x-2">
+              <CalendarIcon className="text-blue-light-500" />
+              <p className="font-medium">{data.date.toDateString()}</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <LocationIcon className="text-red-light-500" />
+              <p className="font-medium">{data.location}</p>
+            </div>
+          </div>
+          
+          <p className="md:text-lg max-h-48 text-ellipsis overflow-hidden whitespace-normal">{data.description}</p>
+          {collaborators.length !== 0 && (
+            <div className="pt-8 mt-auto">
+              <p className="font-medium">{data.collaboratorLabelText ?? 'In collaboration with:'}</p>
+              <div className="flex flex-wrap justify-center md:justify-start items-center -mx-2">
+                {collaborators.map(({ data: c }) => (
+                  <div className="p-4 md:p-2 w-auto" key={`e_${data.title}_c_${c.name}`}>
+                    <img src={c.logo.src} alt={c.name} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function EngagementsCarousel({ data, partners }: {
+  data: CollectionEntry<'engagements'>[]
+  partners: CollectionEntry<'partners'>[]
 }) {
   const [swiper, setSwiper] = useState<Swiper | null>(null);
 
@@ -56,35 +107,14 @@ export default function EngagementsCarousel({ data }: {
         }} className="swiper relative">
           <div className="swiper-wrapper">
             {data.map((e) => (
-              <div key={`e_${e.title}`} className="swiper-slide max-w-7xl">
-                <div className="m-4 bg-white border shadow-lg flex flex-col md:flex-row min-h-[40rem] h-full">
-                  <div style={{ backgroundImage: `url(${e.image})` }} className="md:w-1/2 h-96 md:h-auto bg-center bg-cover bg-no-repeat"></div>
-                  <div className="md:w-1/2 p-8 md:p-12 flex flex-col items-center md:items-start text-center md:text-left">
-                    <h3 className="text-3xl md:text-5xl font-black mb-4">{e.title}</h3>
-                    <div className="flex flex-col items-center md:items-start md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-4 text-sm md:text-md">
-                      <div className="flex items-center space-x-2">
-                        <CalendarIcon className="text-blue-light-500" />
-                        <p className="font-medium">{e.date}</p>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <LocationIcon className="text-red-light-500" />
-                        <p className="font-medium">{e.location}</p>
-                      </div>
-                    </div>
-                    <p className="md:text-lg max-h-48 text-ellipsis overflow-hidden whitespace-normal">{e.description}</p>
-                    {e.collaborators && (<div className="pt-8 mt-auto">
-                      <p className="font-medium">{e.collaboratorLabelText ?? 'In collaboration with:'}</p>
-                      <div className="flex flex-wrap justify-center md:justify-start items-center -mx-4">
-                        {e.collaborators.map(c => (
-                          <div className="p-4 md:p-2 w-auto" key={`e_${e.title}_c_${c.name}`}>
-                            <img src={c.logo} alt={c.name} />
-                          </div>
-                        ))}
-                      </div>
-                    </div>)}
-                  </div>
-                </div>
-              </div>
+              <EngagementSlide 
+                key={`e_${e.id}`} 
+                data={e.data} 
+                fetchPartnerFn={async (id) => {
+                  const p = partners.find(p => p.id === id + '/info');
+                  if (!p) throw new Error(`Partner ${id} not found`);
+                  return p;
+                }} />
             ))}
           </div>
         </div>
