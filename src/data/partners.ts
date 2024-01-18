@@ -15,35 +15,35 @@ export interface Partner {
 const partners: Partner[] = [
     {
         name: 'IDEAS Davao',
-        logo: ideasDavaoLogo
+        logo: ideasDavaoLogo.src
     },
     {
         name: 'AWS UG Philippines',
-        logo: awsugLogo
+        logo: awsugLogo.src
     },
     {
         name: 'PWA Pilipinas',
-        logo: pwaPilipinasLogo
+        logo: pwaPilipinasLogo.src
     },
     {
         name: 'Google Developer Student Clubs - UIC',
-        logo: gdscUicLogo
+        logo: gdscUicLogo.src
     },
     {
         name: 'Google Developer Student Clubs - Mapúa MCM',
-        logo: gdscMmcmLogo
+        logo: gdscMmcmLogo.src
     },
     {
         name: 'Fix My Mac',
-        logo: fixMyMacLogo
+        logo: fixMyMacLogo.src
     },
     {
         name: 'DEVCON Davao',
-        logo: devconDavaoLogo
+        logo: devconDavaoLogo.src
     },
     {
         name: 'GDG Davao',
-        logo: gdgDavaoLogo
+        logo: gdgDavaoLogo.src
     }
 ] as const;
 
