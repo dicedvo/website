@@ -43,7 +43,7 @@ function EngagementSlide({ data, fetchPartnerFn }: {
             </div>
           </div>
           
-          <p className="md:text-lg max-h-48 text-ellipsis overflow-hidden whitespace-normal">{data.description}</p>
+          <p className="md:text-lg max-h-48">{data.description}</p>
           {collaborators.length !== 0 && (
             <div className="pt-8 mt-auto">
               <p className="font-medium">{data.collaboratorLabelText ?? 'In collaboration with:'}</p>
