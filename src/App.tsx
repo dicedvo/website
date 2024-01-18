@@ -43,13 +43,16 @@ import FacebookIcon from "~icons/dice/facebook";
 import DiceLogo2 from "./assets/dice-logo-stroke.svg";
 import EngagementsCarousel from "./components/EngagementsCarousel";
 import CommunitiesCarousel from "./components/CommunitiesCarousel";
+import { cn } from "./utilities";
 
 export default function App() {
   const scrollRelPosition = useScrollRelPosition();
 
   return (
     <main>
-      <Header variant={scrollRelPosition >= 0.12 ? 'light' : 'dark'} />
+      <Header
+        className={cn(scrollRelPosition < 0.10 && 'backdrop-blur-sm bg-opacity-25')} 
+        variant={scrollRelPosition >= 0.10 ? 'light' : 'dark'} />
 
       {/* Hero */}
       <section style={{backgroundImage: `url(${heroBg})`}} className="pt-[calc(1.25rem+77px)] md:pt-[calc(1.25rem+88px)] bg-cover bg-no-repeat bg-center text-white relative">
