@@ -16,9 +16,9 @@ import TrendIcon from "~icons/dice/trend";
 // Mission Images
 import missionGridBg from "./assets/mission_grid_bg.png";
 import missionImageRight from "./assets/mission_1.png";
+import missionImageRightLg from "./assets/mission_1_lg.png";
 import missionImageLeft from "./assets/mission_2.png";
-import missionTriangleRight from "./assets/mission_triangle_right.png";
-import missionTriangleLeft from "./assets/mission_triangle_left.png";
+import missionImageLeftLg from "./assets/mission_2_lg.png";
 
 // Engagement Data
 import partners from "./data/partners";
@@ -91,41 +91,40 @@ export default function App() {
       </section>
 
       {/* Our Mission */}
-      <section className="section relative p-0">
-        <div className="relative z-[1] content-wrapper">
+      <section className="section relative p-0 overflow-clip">
+        <div className="z-[1] content-wrapper">
           <div className="section-header pt-10 md:pt-28 !pb-16">
             <h2>Our Mission</h2>
           </div>
 
-          <div style={{backgroundImage: `url(${missionTriangleRight})`}} className="hidden md:block z-0 absolute top-0 right-[-13%] h-[957px] w-[457px] bg-no-repeat bg-[top_center]"></div>
-          <div style={{backgroundImage: `url(${missionTriangleLeft})`}} className="hidden md:block z-0 absolute bottom-0 left-[-13%] h-[957px] w-[457px] bg-no-repeat bg-[bottom_center]"></div>
-
-          <div className="relative z-[1] flex flex-col pb-28">
-            <div className="flex flex-col-reverse text-center md:text-left md:flex-row items-center md:pb-10">
-              <div className="md:w-[62%] space-y-4 md:space-y-8">
-                <h3 className="bg-red-light-500 text-white p-1 md:p-4 text-2xl md:text-5xl font-extrabold">We believe in the power of collective action.</h3>
-                <p className="font-medium md:text-2xl">We provide a platform for student organizations to come together, exchange ideas, and share resources. Through our support and guidance, we enable our members to unleash their full potential and make a lasting impact in their respective fields.</p>
+          <div className="z-[1] flex flex-col px-8 md:px-0 pb-28">
+            <div className="flex flex-col-reverse text-center md:text-left md:flex-row items-center md:items-start md:pb-10">
+              <div className="md:w-2/3 lg:w-[62%] z-[1] md:z-0 space-y-4 lg:space-y-8">
+                <h3 className="bg-red-light-500 text-white p-1 md:p-2 lg:p-4 text-2xl md:text-3xl lg:text-5xl font-extrabold">We believe in the power of collective action.</h3>
+                <p className="font-medium lg:text-2xl">We provide a platform for student organizations to come together, exchange ideas, and share resources. Through our support and guidance, we enable our members to unleash their full potential and make a lasting impact in their respective fields.</p>
               </div>
 
-              <div className="w-1/2 md:w-[40%] pb-8 md:pb-0 md:pl-8">
-                <img src={missionImageRight} alt="Mission Right" />
+              <div className="relative w-1/2 md:w-1/3 lg:w-[40%] -mb-2 md:mb-0 md:pl-4 lg:pl-8">
+                <img src={missionImageRight} alt="Mission Right" className="md:hidden" />
+                <img src={missionImageRightLg} alt="Mission Right" className="hidden md:block absolute -bottom-[60%] translate-y-[70%] scale-[1.1] -right-[3rem] -z-[1] h-auto object-bottom" />
               </div>
             </div>
 
             <div className="flex flex-col-reverse md:flex-row-reverse text-center md:text-left items-center pt-10">
-              <div className="md:w-[62%] space-y-4 md:space-y-8">
-                <h3 className="bg-pink-light-500 text-white p-4 text-2xl md:text-5xl font-extrabold">Our purpose is to empower student communities through collaboration.</h3>
-                <p className="font-medium md:text-2xl">We understand the challenges faced by student organizations and the need for a strong support system that fosters growth and innovation. That's why we have created a dynamic community that brings together like-minded individuals from various schools, backgrounds, and interests.</p>
+              <div className="md:w-2/3 lg:w-[62%] z-[1] md:z-0 space-y-4 lg:space-y-8">
+                <h3 className="bg-pink-light-500 text-white p-1 md:p-2 lg:p-4 text-2xl md:text-3xl lg:text-5xl font-extrabold">Our purpose is to empower student communities through collaboration.</h3>
+                <p className="font-medium lg:text-2xl">We understand the challenges faced by student organizations and the need for a strong support system that fosters growth and innovation. That's why we have created a dynamic community that brings together like-minded individuals from various schools, backgrounds, and interests.</p>
               </div>
 
-              <div className="w-1/2 md:w-[40%] pb-8 md:pb-0 md:pr-8">
-                <img src={missionImageLeft} alt="Mission Left" />
+              <div className="relative w-1/2 md:w-1/3 lg:w-[40%] -mb-2 md:mb-0 md:pr-4 lg:pr-8">
+                <img src={missionImageLeft} alt="Mission Left" className="md:hidden" />
+                <img src={missionImageLeftLg} alt="Mission Left" className="hidden md:block absolute -bottom-[50%] translate-y-[50%] scale-[1.1] -left-[3rem] -z-[1] h-auto object-bottom" />
               </div>
             </div>
           </div>
         </div>
 
-        <div style={{backgroundImage: `url(${missionGridBg})`}} className="z-0 h-[677px] absolute top-0 inset-x-0 bg-[center_top] bg-no-repeat"></div>
+        <div style={{backgroundImage: `url(${missionGridBg})`}} className="-z-[2] h-[677px] absolute top-0 inset-x-0 bg-[center_top] bg-no-repeat"></div>
       </section>
 
       {/* Our Vision */}
@@ -135,27 +134,27 @@ export default function App() {
             <h2>Our Vision</h2>
           </div>
 
-          <div className="flex flex-col md:flex-row px-3 md:px-0">
-            <div className="md:w-1/3 space-y-3 pb-8 md:pb-0 md:pr-3">
-            <div className="inline-block p-4 bg-blue-light-500 rounded-full mb-2">
+          <div className="flex flex-col lg:flex-row px-8 lg:px-0">
+            <div className="lg:w-1/3 space-y-3 flex flex-col items-center lg:items-start text-center lg:text-left pb-8 lg:pb-0 lg:pr-3">
+              <div className="inline-block p-4 bg-blue-light-500 rounded-full mb-2">
                 <BoxIcon className="h-12 w-12" />
               </div>
-              <h2 className="text-blue-light-500 text-3xl md:text-4xl uppercase font-bold">Create</h2>
-              <p className="md:text-2xl">Create a <b>collaborative of student-run tech organizations</b> that empower the youth of Davao City to pursue their passions in technology.</p>
+              <h2 className="text-blue-light-500 text-3xl lg:text-4xl uppercase font-bold">Create</h2>
+              <p className="text-xl lg:text-2xl">Create a <b>collaborative of student-run tech organizations</b> that empower the youth of Davao City to pursue their passions in technology.</p>
             </div>
-            <div className="md:w-1/3 space-y-3 py-8 md:py-0 md:px-3 border-y md:border-y-0 md:border-x">
+            <div className="lg:w-1/3 space-y-3 flex flex-col items-center lg:items-start text-center lg:text-left py-8 lg:py-0 lg:px-3 border-y lg:border-y-0 lg:border-x">
               <div className="inline-block p-4 bg-green-light-500 rounded-full mb-2">
                 <ConnectIcon className="h-12 w-12" />
               </div>
               <h2 className="text-green-light-500 text-4xl uppercase font-bold">Collaborate</h2>
-              <p className="md:text-2xl">We envision a future where <b>our member organizations collaborate seamlessly,</b> sharing resources and best practices to enhance their reach and impact. </p>
+              <p className="text-xl lg:text-2xl">We envision a future where <b>our member organizations collaborate seamlessly,</b> sharing resources and best practices to enhance their reach and impact. </p>
             </div>
-            <div className="md:w-1/3 space-y-3 pt-8 md:pt-0 md:pl-3">
+            <div className="lg:w-1/3 space-y-3 flex flex-col items-center lg:items-start text-center lg:text-left pt-8 lg:pt-0 lg:pl-3">
               <div className="inline-block p-4 bg-yellow-500 rounded-full mb-2">
                 <PeopleIcon className="h-12 w-12" />
               </div>
               <h2 className="text-yellow-500 text-4xl uppercase font-bold">Lead</h2>
-              <p className="md:text-2xl">We envision ourselves as a collective leading force in the promotion of computer education and <b>enabling our members to make an impact on our communities.</b></p>
+              <p className="text-xl lg:text-2xl">We envision ourselves as a collective leading force in the promotion of computer education and <b>enabling our members to make an impact on our communities.</b></p>
             </div>
           </div>
         </div>
@@ -209,11 +208,11 @@ export default function App() {
 
       {/* Contact Us */}
       <section className="bg-yellow-light-500">
-        <div className="flex flex-col-reverse md:flex-row">
-          <div className="md:w-1/2 flex flex-col space-y-4 lg:pl-16 xl:pl-24 2xl:pl-60 p-8 lg:pr-8 lg:py-16">
-            <div className="text-center md:text-left space-y-2 md:space-y-4 md:pb-16">
-              <h2 className="text-4xl md:text-6xl font-black">Contact Us</h2>
-              <p className="md:text-lg">For any questions or concerns, or to learn more about our organization and initiatives, you may reach out to us through this contact form.</p>
+        <div className="flex flex-col-reverse lg:flex-row">
+          <div className="lg:w-1/2 flex flex-col space-y-4 lg:pl-16 xl:pl-24 2xl:pl-60 p-8 lg:pr-8 lg:py-16">
+            <div className="text-center lg:text-left space-y-2 lg:space-y-4 lg:pb-16">
+              <h2 className="text-4xl lg:text-6xl font-black">Contact Us</h2>
+              <p className="lg:text-lg">For any questions or concerns, or to learn more about our organization and initiatives, you may reach out to us through this contact form.</p>
             </div>
             <form method="POST" action="." className="flex flex-col space-y-4">
               <div className="flex flex-col space-y-2">
@@ -232,9 +231,10 @@ export default function App() {
             </form>
           </div>
           <div 
-            className="flex h-96 md:h-auto flex-row w-full md:flex-col md:w-1/2 bg-gray-200 bg-center bg-cover"
+            className="flex h-96 lg:h-auto flex-row w-full lg:flex-col lg:w-1/2 bg-gray-200 bg-center bg-cover"
             style={{backgroundImage: `url(${contactBg})`}}>
-            <ContactTriangle className="text-yellow-light-500 md:h-full" />
+            <ContactTriangle className="hidden lg:block text-yellow-light-500 lg:h-full" />
+            <ContactTriangle orientation="horizontal" className="mt-auto h-16 w-full lg:hidden text-yellow-light-500 lg:h-full" />
           </div>
         </div>
       </section>
@@ -242,9 +242,8 @@ export default function App() {
       <footer className="relative bg-black text-white py-12">
         <div style={{
           backgroundImage: `url(${DiceLogo2})`, 
-          backgroundSize: 'contain',
-          backgroundPosition: '80% center'}}
-          className="absolute top-0 inset-x-0 h-full w-full bg-no-repeat"></div>
+          backgroundSize: 'contain'}}
+          className="absolute top-0 inset-x-0 h-full w-full bg-no-repeat bg-[120%_center] lg:bg-[80%_center]"></div>
 
         <div className="relative content-wrapper flex flex-col items-center text-center space-y-8">
           <div className="flex flex-col items-center space-y-4">

@@ -16,19 +16,19 @@ export default function FaqsAccordion({ questions }: {
         if (prevCurrentOpenedIdx.current !== -1) {
             questionCloseEls.current[prevCurrentOpenedIdx.current]();
         }
-        
+
         prevCurrentOpenedIdx.current = currentOpenedIdx;
     }, [currentOpenedIdx]);
 
     return (
         <div>
             {questions.map((q, i) => (
-                <Disclosure 
+                <Disclosure
                     as="div"
                     key={`question_${i}`}
-                    className="transition-colors border-b hover:bg-gray-200 border-black">
+                    className="transition-colors border-b hover:bg-gray-200 border-gray-400">
                     {({ open, close }) => (<>
-                        <Disclosure.Button 
+                        <Disclosure.Button
                             ref={_ => questionCloseEls.current[i] = close}
                             onClick={() => {
                                 setCurrentOpenedIdx(cIdx => i === cIdx ? -1 : i);
@@ -37,10 +37,10 @@ export default function FaqsAccordion({ questions }: {
                             <p className="font-bold">{q.question}</p>
                             <ArrowDownIcon className={cn("ml-4", open && 'rotate-180')} />
                         </Disclosure.Button>
-                        <Disclosure.Panel className="py-4 px-8">
+                        <Disclosure.Panel className="pb-4 px-8">
                             <p>{q.answer}</p>
                         </Disclosure.Panel>
-                        </>)}
+                    </>)}
                 </Disclosure>
             ))}
         </div>

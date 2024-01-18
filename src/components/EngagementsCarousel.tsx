@@ -76,7 +76,7 @@ export default function EngagementsCarousel({ data }: {
                       <p className="font-medium">{e.collaboratorLabelText ?? 'In collaboration with:'}</p>
                       <div className="flex flex-wrap justify-center md:justify-start items-center -mx-4">
                         {e.collaborators.map(c => (
-                          <div className="p-4 md:p-2 w-1/2 md:w-auto" key={`e_${e.title}_c_${c.name}`}>
+                          <div className="p-4 md:p-2 w-auto" key={`e_${e.title}_c_${c.name}`}>
                             <img src={c.logo} alt={c.name} />
                           </div>
                         ))}
