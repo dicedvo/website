@@ -1,0 +1,52 @@
+---
+
+---
+
+<form method="POST" action="https://api.web3forms.com/submit" class="flex flex-col space-y-4 font-semibold">
+    <input type="hidden" name="access_key" value="d954dfa1-0945-4082-89f7-5a7c1d1579c7">
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+    <div class="flex flex-col space-y-2">
+        <label for="email">E-mail</label>
+        <input
+            type="email"
+            name="email"
+            id="email"
+            class="border rounded-sm shadow px-8 py-4"
+            placeholder="example@example.com"
+            required
+        />
+    </div>
+
+
+
+    <div class="flex flex-col space-y-2">
+        <label for="subject">Subject</label>
+        <input
+            type="text"
+            name="subject"
+            id="subject"
+            class="border rounded-sm shadow px-8 py-4"
+            placeholder="Subject"
+            required
+        />
+    </div>
+
+    <div class="flex flex-col space-y-2">
+        <label for="message">Message</label>
+        <textarea
+            name="message"
+            class="border rounded-sm shadow px-8 py-4"
+            id="message"
+            rows={10}
+            required></textarea>
+    </div>
+    <div class="h-captcha" data-captcha="true"></div>
+    <button
+        type="submit"
+        class="button px-24 py-4 bg-gray-600 hover:bg-gray-700 text-lg w-full md:w-auto md:self-end"
+        >Send</button
+    >
+</form>
+
+<script src="https://web3forms.com/client/script.js" async defer></script>

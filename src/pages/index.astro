@@ -25,6 +25,7 @@ import FaqsAccordion from "../components/FaqsAccordion";
 // Contact Us
 import contactBg from "../assets/contact_bg.png";
 import ContactTriangle from "../components/ContactTriangle";
+import ContactForm from "../components/ContactForm.astro";
 
 import EngagementsCarousel from "../components/EngagementsCarousel";
 import CommunityCard from "../components/CommunityCard.tsx";
@@ -354,45 +355,8 @@ const partners = await getPartners();
                         us through this contact form.
                     </p>
                 </div>
-                <form
-                    method="POST"
-                    action="."
-                    class="flex flex-col space-y-4"
-                >
-                    <div class="flex flex-col space-y-2">
-                        <label for="email">E-mail</label>
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            class="border rounded-sm shadow px-8 py-4"
-                            placeholder="example@example.com"
-                        />
-                    </div>
-                    <div class="flex flex-col space-y-2">
-                        <label for="subject">Subject</label>
-                        <input
-                            type="text"
-                            name="subject"
-                            id="subject"
-                            class="border rounded-sm shadow px-8 py-4"
-                            placeholder="Subject Name"
-                        />
-                    </div>
-                    <div class="flex flex-col space-y-2">
-                        <label for="message">Message</label>
-                        <textarea
-                            name="message"
-                            class="border rounded-sm shadow px-8 py-4"
-                            id="message"
-                            rows={10}></textarea>
-                    </div>
-                    <button
-                        type="submit"
-                        class="button px-24 py-4 bg-gray-600 hover:bg-gray-700 text-lg w-full md:w-auto md:self-end"
-                        >Send</button
-                    >
-                </form>
+
+                <ContactForm />
             </div>
             <div
                 class="flex h-96 lg:h-auto flex-row w-full lg:flex-col lg:w-1/2 bg-gray-200 bg-center bg-cover"
