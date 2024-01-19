@@ -8,7 +8,7 @@ export default function Footer() {
     return (
         <footer className="relative bg-black text-white py-12">
             <div style={{
-                backgroundImage: `url(${DiceLogo2})`,
+                backgroundImage: `url(${DiceLogo2.src})`,
                 backgroundSize: 'contain'
             }}
                 className="absolute top-0 inset-x-0 h-full w-full bg-no-repeat bg-[120%_center] lg:bg-[80%_center]"></div>
