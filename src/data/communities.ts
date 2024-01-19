@@ -1,3 +1,5 @@
+import type { EntryFieldTypes } from 'contentful';
+
 // Community Logos
 import gdscMapuaMcmLogo from '../assets/communities/gdsc_mmcm.png';
 import gdscUicLogo from '../assets/communities/gdsc_uic.png';
@@ -10,6 +12,16 @@ import umsdcLogo from '../assets/communities/umsdc.png';
 import umEnigmaLogo from '../assets/communities/um_enigma.png';
 import mmcmApiLogo from '../assets/communities/mmcm_api.png';
 import bitsLogo from '../assets/communities/bits.png';
+
+export type CommunitySkeleton = {
+    contentTypeId: "community"
+    fields: {
+        name: EntryFieldTypes.Text
+        logo: EntryFieldTypes.AssetLink
+        description: EntryFieldTypes.Text
+        website: EntryFieldTypes.Text
+    }
+}
 
 export interface Community {
     logo: string;
