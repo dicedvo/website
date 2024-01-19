@@ -12,7 +12,7 @@ export interface Partner {
 export type PartnerSkeleton = {
     contentTypeId: "partner"
     fields: {
-        name: EntryFieldTypes.Text
+        name: EntryFieldTypes.Symbol
         logo: EntryFieldTypes.AssetLink
         description: EntryFieldTypes.Text
         website: EntryFieldTypes.Text
@@ -22,6 +22,7 @@ export type PartnerSkeleton = {
 export async function getPartners() {
     const entries = await contentfulClient.getEntries<PartnerSkeleton>({
         content_type: "partner",
+        order: ["fields.name"]
     });
 
     const resolved = resolveResponse(entries) as Entry<PartnerSkeleton, undefined, string>[];
