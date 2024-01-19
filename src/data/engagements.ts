@@ -36,7 +36,6 @@ export async function getEngagements() {
 
     // resolve assets and entries
     return Promise.all(resolved.map(async (entry) => {
-        console.log(JSON.stringify(entry.fields, null, 2));
         let engagement: Engagement = {
             title: entry.fields.title as string,
             date: new Date(entry.fields.date as string).toDateString(),
