@@ -22,5 +22,9 @@ export default function useScrollRelPosition() {
         }
     }, [scrollPos]);
 
+    useEffect(() => {
+        monitorScroll();
+    }, []);
+
     return scrollPos;
 }
