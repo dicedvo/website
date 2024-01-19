@@ -18,10 +18,11 @@ export interface Community {
     url: string;
 }
 
-export async function getCommunities() {
+export async function getCommunities(prop?: { first?: number }) {
     const entries = await contentfulClient.getEntries<CommunitySkeleton>({
         content_type: "community",
-        order: ["sys.createdAt"]
+        order: ["sys.createdAt"],
+        limit: prop?.first
     });
 
     return Promise.all(entries.items.map(async (entry) => {
