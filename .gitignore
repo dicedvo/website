@@ -25,3 +25,6 @@ dist-ssr
 
 # Astro
 .astro
+
+.env
+.env.production

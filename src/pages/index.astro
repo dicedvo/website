@@ -34,11 +34,20 @@ import ContactTriangle from "../components/ContactTriangle";
 import EngagementsCarousel from "../components/EngagementsCarousel";
 import CommunitiesCarousel from "../components/CommunitiesCarousel";
 
-import { getCollection } from "astro:content";
+import { contentfulClient } from "../lib/contentful";
+import type { EngagementSkeleton, PartnerSkeleton } from "../lib/types";
+import resolveResponse from "contentful-resolve-response";
 
 // Engagement Data
-const engagements = await getCollection("engagements");
-const partners = await getCollection("partners");
+const rawEngagements = await contentfulClient.getEntries<EngagementSkeleton>({
+    content_type: "engagement",
+    // order: "fields.date",
+});
+const engagements = resolveResponse(rawEngagements);
+const partners = await contentfulClient.getEntries<PartnerSkeleton>({
+    content_type: "partner",
+    // order: "fields.date",
+});
 ---
 
 <Layout title="Home">
@@ -266,10 +275,8 @@ const partners = await getCollection("partners");
 
     {/* Engagements */}
     <section class="section relative">
-        <div
-            style={{ backgroundImage: `url(${missionGridBg})` }}
-            class="z-0 h-[677px] absolute top-0 inset-x-0 bg-[center_top] bg-no-repeat"
-        >
+        <div style={{ backgroundImage: `url(${missionGridBg})` }}
+            class="z-0 h-[677px] absolute top-0 inset-x-0 bg-[center_top] bg-no-repeat">
         </div>
 
         <div class="relative">
@@ -281,12 +288,10 @@ const partners = await getCollection("partners");
                 </p>
 
                 {/* Partner logos */}
-                <div
-                    class="lg:-mx-48 flex flex-wrap items-center justify-center pt-2"
-                >
-                    {partners.map((p) => (
+                <div class="lg:-mx-48 flex flex-wrap items-center justify-center pt-2">
+                    {partners.items.map((p) => (
                         <div class="p-2 md:p-4">
-                            <img src={p.data.logo.src} alt={p.data.name} class="max-h-[60px]" />
+                            <img src={contentfulClient.getAsset(p.fields.logo.sys.id)} alt={p.fields.name} class="max-h-[60px]" />
                         </div>
                     ))}
                 </div>
@@ -294,8 +299,7 @@ const partners = await getCollection("partners");
 
             <EngagementsCarousel 
                 data={engagements}
-                partners={partners}
-                client:only />
+                client:load />
         </div>
     </section>
 
@@ -402,3 +406,4 @@ const partners = await getCollection("partners");
         </div>
     </section>
 </Layout>
+../lib/contentful

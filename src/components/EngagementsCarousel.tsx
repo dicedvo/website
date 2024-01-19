@@ -10,45 +10,32 @@ import "swiper/css";
 import LocationIcon from "~icons/dice/location";
 import CalendarIcon from "~icons/dice/calendar";
 import ArrowDownIcon from "~icons/dice/arrow-down";
-import type { CollectionEntry } from "astro:content";
+import type { Engagement2 as Engagement } from "../lib/types";
 
-type FetchPartnerFn = (id: string) => Promise<CollectionEntry<'partners'>>;
-
-function EngagementSlide({ data, fetchPartnerFn }: {
-  data: CollectionEntry<'engagements'>['data']
-  fetchPartnerFn: FetchPartnerFn
-}) {
-  const [collaborators, setCollaborators] = useState<CollectionEntry<'partners'>[]>([]);
-
-  useEffect(() => {
-    if (!data.collaborators) return;
-    Promise.all(data.collaborators.map(fetchPartnerFn))
-      .then(setCollaborators);
-  }, []);
-
+function EngagementSlide({ data: { fields: data } }: { data: Engagement }) {
   return (
     <div className="swiper-slide max-w-7xl">
       <div className="m-4 bg-white border shadow-lg flex flex-col md:flex-row min-h-[40rem] h-full">
-        <div style={{ backgroundImage: `url(${data.image.src})` }} className="md:w-1/2 h-96 md:h-auto bg-center bg-cover bg-no-repeat"></div>
+        <div style={{ backgroundImage: `url(${data.image})` }} className="md:w-1/2 h-96 md:h-auto bg-center bg-cover bg-no-repeat"></div>
         <div className="md:w-1/2 p-8 md:p-12 flex flex-col items-center md:items-start text-center md:text-left">
-          <h3 className="text-3xl md:text-5xl font-black mb-4">{data.title}</h3>
+          <h3 className="text-3xl md:text-5xl font-black mb-4">{data.title as string}</h3>
           <div className="flex flex-col items-center md:items-start md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-4 text-sm md:text-md">
             <div className="flex items-center space-x-2">
               <CalendarIcon className="text-blue-light-500" />
-              <p className="font-medium">{data.date.toDateString()}</p>
+              {/* <p className="font-medium">{data.date.type.toDateString()}</p> */}
             </div>
             <div className="flex items-center space-x-2">
               <LocationIcon className="text-red-light-500" />
-              <p className="font-medium">{data.location}</p>
+              <p className="font-medium">{data.location as string}</p>
             </div>
           </div>
           
-          <p className="md:text-lg max-h-48">{data.description}</p>
-          {collaborators.length !== 0 && (
+          <p className="md:text-lg max-h-48">{data.description as string}</p>
+          {data.collaborators.length !== 0 && (
             <div className="pt-8 mt-auto">
-              <p className="font-medium">{data.collaboratorLabelText ?? 'In collaboration with:'}</p>
+              <p className="font-medium">{data.collaboratorLabelText as string}</p>
               <div className="flex flex-wrap justify-center md:justify-start items-center -mx-2">
-                {collaborators.map(({ data: c }) => (
+                {data.collaborators.map((c) => (
                   <div className="p-4 md:p-2 w-auto" key={`e_${data.title}_c_${c.name}`}>
                     <img src={c.logo.src} alt={c.name} />
                   </div>
@@ -62,9 +49,8 @@ function EngagementSlide({ data, fetchPartnerFn }: {
   );
 }
 
-export default function EngagementsCarousel({ data, partners }: {
-  data: CollectionEntry<'engagements'>[]
-  partners: CollectionEntry<'partners'>[]
+export default function EngagementsCarousel({ data }: {
+  data: Engagement[]
 }) {
   const [swiper, setSwiper] = useState<Swiper | null>(null);
 
@@ -108,13 +94,8 @@ export default function EngagementsCarousel({ data, partners }: {
           <div className="swiper-wrapper">
             {data.map((e) => (
               <EngagementSlide 
-                key={`e_${e.id}`} 
-                data={e.data} 
-                fetchPartnerFn={async (id) => {
-                  const p = partners.find(p => p.id === id + '/info');
-                  if (!p) throw new Error(`Partner ${id} not found`);
-                  return p;
-                }} />
+                key={`e_${e.fields.title}`} 
+                data={e} />
             ))}
           </div>
         </div>
