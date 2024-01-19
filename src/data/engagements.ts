@@ -29,7 +29,7 @@ export interface Engagement {
 export async function getEngagements() {
     const entries = await contentfulClient.getEntries<EngagementSkeleton>({
         content_type: "engagement",
-        order: ["-fields.date"]
+        order: ["fields.date"]
     });
 
     const resolved = resolveResponse(entries) as Entry<EngagementSkeleton, undefined, string>[];
