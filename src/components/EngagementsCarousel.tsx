@@ -10,9 +10,9 @@ import "swiper/css";
 import LocationIcon from "~icons/dice/location";
 import CalendarIcon from "~icons/dice/calendar";
 import ArrowDownIcon from "~icons/dice/arrow-down";
-import type { Engagement2 as Engagement } from "../lib/types";
+import type { Engagement } from "../data/engagements";
 
-function EngagementSlide({ data: { fields: data } }: { data: Engagement }) {
+function EngagementSlide({ data }: { data: Engagement }) {
   return (
     <div className="swiper-slide max-w-7xl">
       <div className="m-4 bg-white border shadow-lg flex flex-col md:flex-row min-h-[40rem] h-full">
@@ -22,14 +22,14 @@ function EngagementSlide({ data: { fields: data } }: { data: Engagement }) {
           <div className="flex flex-col items-center md:items-start md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-4 text-sm md:text-md">
             <div className="flex items-center space-x-2">
               <CalendarIcon className="text-blue-light-500" />
-              {/* <p className="font-medium">{data.date.type.toDateString()}</p> */}
+              <p className="font-medium">{data.date}</p>
             </div>
             <div className="flex items-center space-x-2">
               <LocationIcon className="text-red-light-500" />
               <p className="font-medium">{data.location as string}</p>
             </div>
           </div>
-          
+
           <p className="md:text-lg max-h-48">{data.description as string}</p>
           {data.collaborators.length !== 0 && (
             <div className="pt-8 mt-auto">
@@ -37,7 +37,7 @@ function EngagementSlide({ data: { fields: data } }: { data: Engagement }) {
               <div className="flex flex-wrap justify-center md:justify-start items-center -mx-2">
                 {data.collaborators.map((c) => (
                   <div className="p-4 md:p-2 w-auto" key={`e_${data.title}_c_${c.name}`}>
-                    <img src={c.logo.src} alt={c.name} />
+                    <img src={c.logo} alt={c.name} />
                   </div>
                 ))}
               </div>
@@ -93,9 +93,7 @@ export default function EngagementsCarousel({ data }: {
         }} className="swiper relative">
           <div className="swiper-wrapper">
             {data.map((e) => (
-              <EngagementSlide 
-                key={`e_${e.fields.title}`} 
-                data={e} />
+              <EngagementSlide key={`e_${e.title}`} data={e} />
             ))}
           </div>
         </div>

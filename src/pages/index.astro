@@ -30,24 +30,15 @@ import FaqsAccordion from "../components/FaqsAccordion";
 import contactBg from "../assets/contact_bg.png";
 import ContactTriangle from "../components/ContactTriangle";
 
-
 import EngagementsCarousel from "../components/EngagementsCarousel";
 import CommunitiesCarousel from "../components/CommunitiesCarousel";
 
-import { contentfulClient } from "../lib/contentful";
-import type { EngagementSkeleton, PartnerSkeleton } from "../lib/types";
-import resolveResponse from "contentful-resolve-response";
+import { getEngagements } from "../data/engagements";
+import { getPartners } from "../data/partners";
 
 // Engagement Data
-const rawEngagements = await contentfulClient.getEntries<EngagementSkeleton>({
-    content_type: "engagement",
-    // order: "fields.date",
-});
-const engagements = resolveResponse(rawEngagements);
-const partners = await contentfulClient.getEntries<PartnerSkeleton>({
-    content_type: "partner",
-    // order: "fields.date",
-});
+const engagements = await getEngagements();
+const partners = await getPartners();
 ---
 
 <Layout title="Home">
@@ -289,15 +280,15 @@ const partners = await contentfulClient.getEntries<PartnerSkeleton>({
 
                 {/* Partner logos */}
                 <div class="lg:-mx-48 flex flex-wrap items-center justify-center pt-2">
-                    {partners.items.map((p) => (
+                    {partners.map((p) => (
                         <div class="p-2 md:p-4">
-                            <img src={contentfulClient.getAsset(p.fields.logo.sys.id)} alt={p.fields.name} class="max-h-[60px]" />
+                            <img src={p.logo} alt={p.name} class="max-h-[60px]" />
                         </div>
                     ))}
                 </div>
             </div>
 
-            <EngagementsCarousel 
+            <EngagementsCarousel
                 data={engagements}
                 client:load />
         </div>
@@ -406,4 +397,3 @@ const partners = await contentfulClient.getEntries<PartnerSkeleton>({
         </div>
     </section>
 </Layout>
-../lib/contentful
