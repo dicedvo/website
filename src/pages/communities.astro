@@ -3,7 +3,7 @@ import Layout from "../layouts/Page.astro";
 
 import { getCommunities } from "../data/communities";
 import CommunityCard from "../components/CommunityCard";
-import DiceIcon from "~icons/dice/dice-icon";
+import DiceIcon from "../assets/dice-icon.png";
 
 const communities = await getCommunities();
 ---
@@ -13,20 +13,18 @@ const communities = await getCommunities();
     <div class="content-wrapper py-12">
         <div class="flex flex-wrap items-stretch">
             {communities.map(c => (
-                <div class="w-1/3 pt-16 pb-2 px-2">
+                <div class="w-full md:w-1/2 lg:w-1/3 md:pt-16 pb-2 px-2">
                     <CommunityCard data={c} className="h-full" />
                 </div>
             ))}
-            <div class="w-1/3 pt-16 pb-2 px-2">
-                <div class="h-full flex flex-col border shadow-lg p-8 items-center text-center rounded-md">
-                    <div class="mx-auto bg-white p-2 w-32 h-32 -mt-20 shadow-md rounded-full border mb-4 flex items-center justify-center">
-                        <DiceIcon className="h-auto w-20" />
-                    </div>
-
-                    <h3 class="text-2xl font-black mb-4">Your community may be the next.</h3>
-                    <p class="text-sm mb-10">Is your student organization based in Davao City and is interested in joining DICE? You may contact us by through our contact form.</p>
-                    <a href="/#contact-us" class="w-full button py-4 text-xl mt-auto">Contact Us</a>
-                </div>
+            <div class="w-full md:w-1/2 lg:w-1/3 md:pt-16 pb-2 px-2">
+                <CommunityCard className="h-full" data={{
+                    name: "Your community may be the next.",
+                    description: "Is your student organization based in Davao City and is interested in joining DICE? You may contact us by through our contact form.",
+                    logo: DiceIcon.src,
+                    buttonText: "Contact Us",
+                    url: "/#contact-us",
+                }} />
             </div>
         </div>
     </div>

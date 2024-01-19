@@ -312,14 +312,14 @@ const partners = await getPartners();
         <div class="flex flex-col items-center space-y-8">
             <div class="flex flex-wrap items-stretch pb-8">
                 {communities.map(c => (
-                    <div class="w-1/3 pt-16 pb-2 px-2">
+                    <div class="w-full md:w-1/2 lg:w-1/3 md:pt-16 pb-2 px-2">
                         <CommunityCard data={c} className="h-full" />
                     </div>
                 ))}
             </div>
 
             <a href="/communities" class="button bg-pink-light-500 hover:bg-pink-light-600 px-8 py-4 text-xl">
-                See all of the communities
+                Explore all communities
             </a>
         </div>
     </section>

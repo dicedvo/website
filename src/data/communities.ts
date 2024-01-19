@@ -15,6 +15,7 @@ export interface Community {
     logo: string;
     name: string;
     description: string;
+    buttonText?: string;
     url: string;
 }
 
