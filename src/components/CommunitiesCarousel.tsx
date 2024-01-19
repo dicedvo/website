@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Community } from "../data/communities";
+import type { Community } from "../data/communities";
 
 // Carousel
 import Swiper from "swiper";
@@ -43,8 +43,8 @@ export default function CommunitiesCarousel({ data }: {
       }} className="swiper relative px-10 md:px-0">
         <div className="swiper-wrapper pt-20 pb-10 items-stretch">
           {data.map((c) => (
-            <div key={`community_${c.name}`} className="swiper-slide w-full sm:w-1/2 md:w-1/3 xl:w-1/6 flex flex-col border shadow-lg p-8 items-center text-center rounded-md">
-              <div className="bg-white p-2 w-32 h-32 -mt-20 shadow-md rounded-full border mb-4 flex items-center justify-center">
+            <div key={`community_${c.name}`} className="swiper-slide sm:max-w-[calc(100%/2)] md:max-w-[calc(100%/3)] xl:max-w-[calc(100%/6)] flex flex-col border shadow-lg p-8 items-center text-center rounded-md">
+              <div className="mx-auto bg-white p-2 w-32 h-32 -mt-20 shadow-md rounded-full border mb-4 flex items-center justify-center">
                 <img src={c.logo} alt={c.name} className="h-auto w-24" />
               </div>
 

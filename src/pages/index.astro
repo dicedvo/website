@@ -19,9 +19,6 @@ import missionImageRightLg from "../assets/mission_1_lg.png";
 import missionImageLeft from "../assets/mission_2.png";
 import missionImageLeftLg from "../assets/mission_2_lg.png";
 
-// Community Data
-import communities from "../data/communities";
-
 // FAQs
 import questions from "../data/faqs";
 import FaqsAccordion from "../components/FaqsAccordion";
@@ -33,10 +30,12 @@ import ContactTriangle from "../components/ContactTriangle";
 import EngagementsCarousel from "../components/EngagementsCarousel";
 import CommunitiesCarousel from "../components/CommunitiesCarousel";
 
+// Data
+import { getCommunities } from "../data/communities";
 import { getEngagements } from "../data/engagements";
 import { getPartners } from "../data/partners";
 
-// Engagement Data
+const communities = await getCommunities();
 const engagements = await getEngagements();
 const partners = await getPartners();
 ---
@@ -308,7 +307,7 @@ const partners = await getPartners();
             </p>
         </div>
 
-        <CommunitiesCarousel data={communities} />
+        <CommunitiesCarousel data={communities} client:load />
     </section>
 
     {/* Frequently Asked Questions */}
