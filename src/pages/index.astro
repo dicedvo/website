@@ -20,7 +20,6 @@ import missionImageLeft from "../assets/mission_2.png";
 import missionImageLeftLg from "../assets/mission_2_lg.png";
 
 // FAQs
-import questions from "../data/faqs";
 import FaqsAccordion from "../components/FaqsAccordion";
 
 // Contact Us
@@ -31,10 +30,12 @@ import EngagementsCarousel from "../components/EngagementsCarousel";
 import CommunitiesCarousel from "../components/CommunitiesCarousel";
 
 // Data
+import { getFaqs } from "../data/faqs";
 import { getCommunities } from "../data/communities";
 import { getEngagements } from "../data/engagements";
 import { getPartners } from "../data/partners";
 
+const questions = await getFaqs();
 const communities = await getCommunities();
 const engagements = await getEngagements();
 const partners = await getPartners();
