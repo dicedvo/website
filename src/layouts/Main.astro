@@ -21,7 +21,7 @@ const { title } = Astro.props;
     <!-- <BaseHead title={title}/> -->
   </head>
   <body class="font-sans antialiased text-black">
-   <Header />
+    <Header client:load />
     <main>
       <slot /> <!-- your content is injected here -->
     </main>
