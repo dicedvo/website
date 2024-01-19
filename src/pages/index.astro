@@ -1,5 +1,7 @@
 ---
+import { getMeta } from "../data/meta";
 import Layout from "../layouts/Main.astro";
+import { marked } from 'marked';
 
 // Hero
 import heroGridBg from "../assets/hero_grid_bg.png";
@@ -36,13 +38,14 @@ import { getCommunities } from "../data/communities";
 import { getEngagements } from "../data/engagements";
 import { getPartners } from "../data/partners";
 
+const meta = await getMeta();
 const questions = await getFaqs();
 const communities = await getCommunities({ first: 6 });
 const engagements = await getEngagements();
 const partners = await getPartners();
 ---
 
-<Layout title="Home" autoChangeHeader>
+<Layout autoChangeHeader>
     {/* Hero */}
     <section
         style={{ backgroundImage: `url(${heroBg.src})` }}
@@ -76,20 +79,16 @@ const partners = await getPartners();
 
                 <div class="space-y-6 text-center">
                     <h1 class="text-5xl md:text-7xl font-black text-center">
-                        Davao's Pioneering Student Tech Collective
+                        {meta.landingPage.heroTitle}
                     </h1>
                     <p class="w-[90%] mx-auto md:text-2xl font-normal">
-                        DICE is a pioneering initiative in Davao City aimed at
-                        revolutionizing computer education and development. We
-                        are dedicated to building a collaborative network that
-                        empowers student organizations and propels the
-                        technology landscape forward.
+                        {meta.landingPage.heroSubtitle}
                     </p>
                 </div>
             </div>
 
-            <a href="#contact-us" class="button md:text-2xl py-4 px-16 rounded-base">
-                Get Started
+            <a href={meta.landingPage.ctaButtonLink} class="button md:text-2xl py-4 px-16 rounded-base">
+                {meta.landingPage.ctaButtonText}
             </a>
         </div>
 
@@ -119,14 +118,10 @@ const partners = await getPartners();
                         <h3
                             class="bg-red-light-500 text-white p-1 md:p-2 lg:p-4 text-2xl md:text-3xl lg:text-5xl font-extrabold"
                         >
-                            We believe in the power of collective action.
+                            {meta.landingPage.missionStatements[0].title}
                         </h3>
                         <p class="font-medium lg:text-2xl">
-                            We provide a platform for student organizations to
-                            come together, exchange ideas, and share resources.
-                            Through our support and guidance, we enable our
-                            members to unleash their full potential and make a
-                            lasting impact in their respective fields.
+                            {meta.landingPage.missionStatements[0].subtitle}
                         </p>
                     </div>
 
@@ -155,16 +150,10 @@ const partners = await getPartners();
                         <h3
                             class="bg-pink-light-500 text-white p-1 md:p-2 lg:p-4 text-2xl md:text-3xl lg:text-5xl font-extrabold"
                         >
-                            Our purpose is to empower student communities
-                            through collaboration.
+                            {meta.landingPage.missionStatements[1].title}
                         </h3>
                         <p class="font-medium lg:text-2xl">
-                            We understand the challenges faced by student
-                            organizations and the need for a strong support
-                            system that fosters growth and innovation. That's
-                            why we have created a dynamic community that brings
-                            together like-minded individuals from various
-                            schools, backgrounds, and interests.
+                            {meta.landingPage.missionStatements[1].subtitle}
                         </p>
                     </div>
 
@@ -209,17 +198,10 @@ const partners = await getPartners();
                     >
                         <BoxIcon className="h-12 w-12" />
                     </div>
-                    <h2
-                        class="text-blue-light-500 text-3xl lg:text-4xl uppercase font-bold"
-                    >
-                        Create
+                    <h2 class="text-blue-light-500 text-3xl lg:text-4xl uppercase font-bold">
+                        {meta.landingPage.vision[0].title}
                     </h2>
-                    <p class="text-xl lg:text-2xl">
-                        Create a <b
-                            >collaborative of student-run tech organizations</b
-                        > that empower the youth of Davao City to pursue their passions
-                        in technology.
-                    </p>
+                    <div class="text-xl lg:text-2xl" set:html={meta.landingPage.vision[0].subtitle} />
                 </div>
                 <div
                     class="lg:w-1/3 space-y-3 flex flex-col items-center lg:items-start text-center lg:text-left py-8 lg:py-0 lg:px-3 border-y lg:border-y-0 lg:border-x"
@@ -229,17 +211,10 @@ const partners = await getPartners();
                     >
                         <ConnectIcon className="h-12 w-12" />
                     </div>
-                    <h2
-                        class="text-green-light-500 text-4xl uppercase font-bold"
-                    >
-                        Collaborate
+                    <h2 class="text-green-light-500 text-4xl uppercase font-bold">
+                        {meta.landingPage.vision[1].title}
                     </h2>
-                    <p class="text-xl lg:text-2xl">
-                        We envision a future where <b
-                            >our member organizations collaborate seamlessly,</b
-                        > sharing resources and best practices to enhance their reach
-                        and impact.
-                    </p>
+                    <div class="text-xl lg:text-2xl" set:html={meta.landingPage.vision[1].subtitle} />
                 </div>
                 <div
                     class="lg:w-1/3 space-y-3 flex flex-col items-center lg:items-start text-center lg:text-left pt-8 lg:pt-0 lg:pl-3"
@@ -249,17 +224,10 @@ const partners = await getPartners();
                     >
                         <PeopleIcon className="h-12 w-12" />
                     </div>
-                    <h2
-                        class="text-yellow-500 text-4xl uppercase font-bold"
-                    >
-                        Lead
+                    <h2 class="text-yellow-500 text-4xl uppercase font-bold">
+                        {meta.landingPage.vision[2].title}
                     </h2>
-                    <p class="text-xl lg:text-2xl">
-                        We envision ourselves as a collective leading force in
-                        the promotion of computer education and <b
-                            >enabling our members to make an impact on our
-                            communities.</b>
-                    </p>
+                    <div class="text-xl lg:text-2xl" set:html={meta.landingPage.vision[2].subtitle} />
                 </div>
             </div>
         </div>

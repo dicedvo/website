@@ -1,12 +1,14 @@
 ---
+import { getMeta } from "../data/meta"
+
 import { getImage } from "astro:assets"
 import faviconSrc from "../assets/dice-icon-white.png"
 import faviconSvgSrc from "../assets/icons/dice-icon-white.svg"
 
+import { SEO } from "astro-seo";
 import Header from "../components/Header2.tsx"
-import Footer from "../components/Footer.tsx"
+import Footer from "../components/Footer.astro"
 import "../styles/index.css"
-
 
 const appleTouchIcon = await getImage({
   src: faviconSrc,
@@ -18,11 +20,14 @@ const appleTouchIcon = await getImage({
 const faviconSvg = await getImage({ src: faviconSvgSrc, format: 'svg' })
 
 interface Props {
-  title: string
+  title?: string
+  ogTitle?: string
+  description?: string
   autoChangeHeader?: boolean
 }
 
-const { title, autoChangeHeader = false } = Astro.props;
+const { title, ogTitle, description, autoChangeHeader = false } = Astro.props;
+const meta = await getMeta();
 ---
 
 <html lang="en">
@@ -35,7 +40,21 @@ const { title, autoChangeHeader = false } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <title>{title}</title>
+    <SEO
+      title={title}
+      titleTemplate={`%s - ${meta.fullName}`}
+      titleDefault={`${meta.shortName} - ${meta.fullName}`}
+      description={description ?? meta.description}
+      openGraph={{
+        basic: {
+          title: ogTitle ?? title ?? meta.shortName,
+          type: 'website',
+          image: ''
+        },
+        optional: {
+          siteName: meta.fullName,
+        }
+      }} />
   </head>
   <body class="font-sans antialiased text-black">
     <Header

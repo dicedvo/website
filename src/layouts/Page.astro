@@ -8,7 +8,7 @@ interface Props {
 
 const { title, subtitle } = Astro.props;
 ---
-<Main title={title} autoChangeHeader>
+<Main title={title} description={subtitle} autoChangeHeader>
   <div class="pt-[calc(1.25rem+77px)] md:pt-[calc(1.25rem+88px)] bg-black text-white relative">
     <div class="max-w-5xl mx-auto px-10 py-20 md:py-44 flex flex-col items-center text-center space-y-6">
       <h1 class="text-5xl md:text-7xl font-black">{title}</h1>
