@@ -3,6 +3,7 @@ import Layout from "../layouts/Page.astro";
 
 import { getCommunities } from "../data/communities";
 import CommunityCard from "../components/CommunityCard";
+import PeopleIcon from "~icons/dice/people";
 
 const communities = await getCommunities();
 ---
@@ -16,6 +17,32 @@ const communities = await getCommunities();
                     <CommunityCard data={c} className="h-full" />
                 </div>
             ))}
+            <div class="w-1/3 pt-16 pb-2 px-2">
+                <div class="h-full flex flex-col border shadow-lg p-8 items-center text-center rounded-md">
+                    <div class="mx-auto bg-white p-2 w-32 h-32 -mt-20 shadow-md rounded-full border mb-4 flex items-center justify-center">
+                        <svg class="h-auto w-20" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 463 401">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M405.125 100.25h-115.75L347.25 0l57.875 100.25Z" fill="#FCC669"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="m347.25 200.5-57.875-100.25h115.75L347.25 200.5Z" fill="#2AA250"/>
+                            <path d="M463 200.5H347.25l57.875-100.25L463 200.5Z" fill="#34CB64"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M405.125 300.75h-115.75L347.25 401l57.875-100.25Z" fill="#F73B9C"/>
+                            <path d="M289.375 300.75 231.5 401h115.75l-57.875-100.25Z" fill="#F96CB5"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="m347.25 200.5-57.875 100.25h115.75L347.25 200.5Z" fill="#74CDF1"/>
+                            <path d="M463 200.5H347.25l57.875 100.25L463 200.5Z" fill="#46BCEC"/>
+                            <path d="M173.625 300.75 115.75 401H231.5l-.274-.475-57.601-99.775Z" fill="#333"/>
+                            <path d="m231.5 0 57.875 100.25L347.25 0H231.5Z" fill="#FBB337"/>
+                            <path d="m0 200.5 57.875 100.25V200.5H0Zm57.875-100.25L0 200.5h57.875V100.25Z" fill="#333"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M57.875 0h57.875l57.875 100.25L115.75 200.5l57.875 100.25 57.601 99.775H57.875V0Z" fill="#333"/>
+                            <path d="M231.5 0H115.75l57.875 100.25L231.5 0Z" fill="#F33"/>
+                            <path d="M289.375 100.25 231.5 0l-57.875 100.25h115.75Z" fill="#F66"/>
+                            <path d="m231.5 401 57.875-100.25h-115.75l57.601 99.775.274.475Z" fill="#333"/>
+                        </svg>
+                    </div>
+
+                    <h3 class="text-2xl font-black mb-4">Your community may be the next.</h3>
+                    <p class="text-sm mb-10">Is your student organization based in Davao City and interested in joining DICE? You may contact us by through our contact form.</p>
+                    <a href="/#contact-us" class="w-full button py-4 text-xl mt-auto">Contact Us</a>
+                </div>
+            </div>
         </div>
     </div>
 </Layout>
