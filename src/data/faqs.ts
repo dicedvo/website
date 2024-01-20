@@ -1,5 +1,5 @@
 import type { EntryFieldTypes } from "contentful";
-import { contentfulClient } from "../lib/contentful";
+import { contentfulClient } from "./contentful";
 
 export interface FAQ {
     question: string;

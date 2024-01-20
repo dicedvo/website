@@ -1,5 +1,5 @@
 import type { EntryFieldTypes } from 'contentful';
-import { contentfulClient, getAssetUrl } from '../lib/contentful';
+import { contentfulClient, getAssetUrl } from './contentful';
 
 export type CommunitySkeleton = {
     contentTypeId: "community"

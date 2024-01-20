@@ -1,5 +1,5 @@
 import type { EntryFieldTypes } from "contentful"
-import { contentfulClient } from "../lib/contentful"
+import { contentfulClient } from "./contentful"
 import { marked } from "marked"
 
 export interface Meta {

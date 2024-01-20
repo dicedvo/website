@@ -1,5 +1,5 @@
 import type { Entry, EntryFieldTypes } from "contentful"
-import { contentfulClient, getAssetUrl } from "../lib/contentful"
+import { contentfulClient, getAssetUrl } from "./contentful"
 import { resolvePartners, type Partner, type PartnerSkeleton } from "./partners"
 import resolveResponse from "contentful-resolve-response"
 
