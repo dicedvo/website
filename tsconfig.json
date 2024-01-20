@@ -8,7 +8,8 @@
     ],
     "types": [
       "unplugin-icons/types/react",
-      "unplugin-icons/types/astro"
+      "unplugin-icons/types/astro",
+      "facebook-js-sdk"
     ],
     "strictNullChecks": true,
     "jsx": "preserve"

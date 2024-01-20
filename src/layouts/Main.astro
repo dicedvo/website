@@ -8,8 +8,9 @@ import faviconSvgSrc from "../assets/icons/dice-icon-white.svg"
 import { SEO } from "astro-seo";
 import Header from "../components/Header2.tsx"
 import Footer from "../components/Footer.astro"
+import { generateOgImage } from "../og";
+import MessengerChatBox from "../components/MessengerChatBox.astro";
 import "../styles/index.css"
-import { generateOgImage, getOgImageNameByUrl } from "../og";
 
 const appleTouchIcon = await getImage({
   src: faviconSrc,
@@ -79,5 +80,7 @@ const ogImgUrl = (new URL(ogImgPath, Astro.url.origin)).toString();
       <slot /> <!-- your content is injected here -->
     </main>
     <Footer />
+    <MessengerChatBox
+      pageId={import.meta.env.FACEBOOK_PAGE_ID} />
   </body>
 </html>
