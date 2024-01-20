@@ -81,7 +81,7 @@ const ogImgUrl = (new URL(ogImgPath, Astro.url.origin)).toString();
     </main>
     <Footer />
     <MessengerChatBox
-      pageId={import.meta.env.FACEBOOK_PAGE_ID} />
+      pageId={import.meta.env.PUBLIC_FACEBOOK_PAGE_ID} />
     <script>
       import '../firebase';
     </script>
