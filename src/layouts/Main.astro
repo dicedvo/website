@@ -83,8 +83,22 @@ const ogImgUrl = (new URL(ogImgPath, Astro.url.origin)).toString();
     <MessengerChatBox
       pageId={import.meta.env.PUBLIC_FACEBOOK_PAGE_ID} />
     <script>
+      import { logEvent } from 'firebase/analytics';
       import { initializeFirebase } from '../firebase';
-      initializeFirebase();
+      const { analytics } = initializeFirebase();
+
+      // track screen view
+      logEvent(analytics, 'screen_view', {
+        firebase_screen: document.title,
+        firebase_screen_class: document.title,
+      });
+
+      // track page view
+      logEvent(analytics, 'page_view', {
+        page_title: document.title,
+        page_location: location.href,
+        page_path: location.pathname,
+      });
     </script>
   </body>
 </html>
