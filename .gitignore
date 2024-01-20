@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Astro
+.astro
+
+.env
+.env.production
+
+# Generated open graph images
+public/og

@@ -5,9 +5,9 @@ import { useState } from "react";
 function HeaderItems({ className }: { className?: string }) {
     return (
         <ul className={cn("flex space-x-8 font-bold px-4", className)}>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Engagements</a></li>
-            <li><a href="#">Communities</a></li>
+            <li><a href="/#our-mission">About Us</a></li>
+            <li><a href="/#engagements">Engagements</a></li>
+            <li><a href="/communities">Communities</a></li>
         </ul>
     );
 }
@@ -28,9 +28,9 @@ export default function Header({ variant = 'light', className }: {
             }
         )}>
             <div className="content-wrapper flex items-center justify-between mx-auto">
-                <Logo variant={variant === 'light' ? 'dark' : 'light'} />
+                <a href="/"><Logo variant={variant === 'light' ? 'dark' : 'light'} /></a>
                 <HeaderItems className="hidden lg:flex ml-auto" />
-                <a href="#" className="button ml-auto">Contact Us</a>
+                <a href="/#contact-us" className="button ml-auto">Contact Us</a>
 
                 <button className="-mr-4 px-4 py-2 lg:hidden" onClick={() => setShowMenu(s => !s)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width={36} height={36} viewBox="0 0 24 24" fill="currentColor">

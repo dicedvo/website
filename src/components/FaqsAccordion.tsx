@@ -1,5 +1,5 @@
 import { Disclosure } from "@headlessui/react";
-import { FAQ } from "../data/faqs";
+import type { FAQ } from "../data/faqs";
 
 import ArrowDownIcon from "~icons/dice/arrow-down";
 import { cn } from "../utilities";

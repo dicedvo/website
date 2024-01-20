@@ -1,0 +1,83 @@
+---
+import { getMeta } from "../data/meta"
+
+import { getImage } from "astro:assets"
+import faviconSrc from "../assets/dice-icon-white.png"
+import faviconSvgSrc from "../assets/icons/dice-icon-white.svg"
+
+import { SEO } from "astro-seo";
+import Header from "../components/Header2.tsx"
+import Footer from "../components/Footer.astro"
+import "../styles/index.css"
+import { generateOgImage, getOgImageNameByUrl } from "../og";
+
+const appleTouchIcon = await getImage({
+  src: faviconSrc,
+  width: 180,
+  height: 180,
+  format: 'png'
+})
+
+const faviconSvg = await getImage({ src: faviconSvgSrc, format: 'svg' })
+
+interface Props {
+  title?: string
+  ogTitle?: string
+  ogDescription?: string
+  description?: string
+  autoChangeHeader?: boolean
+}
+
+const { title, ogTitle, ogDescription, description, autoChangeHeader = false } = Astro.props;
+const meta = await getMeta();
+
+// generate og image
+const ogImgPath = await generateOgImage({
+  url: Astro.url,
+  title: ogTitle ?? title ?? meta.shortName,
+  subtitle: ogDescription ?? description
+});
+
+const ogImgUrl = (new URL(ogImgPath, Astro.url.origin)).toString();
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href={faviconSvg.src} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={appleTouchIcon.src} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <SEO
+      title={title}
+      titleTemplate={`%s - ${meta.fullName}`}
+      titleDefault={`${meta.shortName} - ${meta.fullName}`}
+      description={description ?? meta.description}
+      twitter={{
+        card: 'summary_large_image',
+        site: meta.fullName,
+      }}
+      openGraph={{
+        basic: {
+          title: ogTitle ?? title ?? meta.shortName,
+          type: 'website',
+          image: ogImgUrl,
+        },
+        optional: {
+          siteName: meta.fullName,
+        },
+      }} />
+  </head>
+  <body class="font-sans antialiased text-black">
+    <Header
+      autoChangeHeader={autoChangeHeader}
+      client:load={autoChangeHeader} />
+    <main>
+      <slot /> <!-- your content is injected here -->
+    </main>
+    <Footer />
+  </body>
+</html>

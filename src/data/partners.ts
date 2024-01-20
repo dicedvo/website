@@ -1,54 +1,44 @@
-import ideasDavaoLogo from '../assets/partners/ideasdavao.png';
-import awsugLogo from '../assets/partners/awsugph.png';
-import pwaPilipinasLogo from '../assets/partners/pwapilipinas.png';
-import gdscUicLogo from '../assets/partners/gdscuic.png';
-import gdscMmcmLogo from '../assets/partners/gdscmmcm.png';
-import fixMyMacLogo from '../assets/partners/fixmymac.png';
-import devconDavaoLogo from '../assets/partners/devcondavao.png';
-import gdgDavaoLogo from '../assets/partners/gdgdavao.png';
+import type { Entry, EntryFieldTypes } from "contentful"
+import { contentfulClient, getAssetUrl } from "../lib/contentful"
+import resolveResponse from "contentful-resolve-response"
 
 export interface Partner {
     name: string
     logo: string
+    description?: string
+    website?: string
 }
 
-const partners: Partner[] = [
-    {
-        name: 'IDEAS Davao',
-        logo: ideasDavaoLogo
-    },
-    {
-        name: 'AWS UG Philippines',
-        logo: awsugLogo
-    },
-    {
-        name: 'PWA Pilipinas',
-        logo: pwaPilipinasLogo
-    },
-    {
-        name: 'Google Developer Student Clubs - UIC',
-        logo: gdscUicLogo
-    },
-    {
-        name: 'Google Developer Student Clubs - Mapúa MCM',
-        logo: gdscMmcmLogo
-    },
-    {
-        name: 'Fix My Mac',
-        logo: fixMyMacLogo
-    },
-    {
-        name: 'DEVCON Davao',
-        logo: devconDavaoLogo
-    },
-    {
-        name: 'GDG Davao',
-        logo: gdgDavaoLogo
+export type PartnerSkeleton = {
+    contentTypeId: "partner"
+    fields: {
+        name: EntryFieldTypes.Symbol
+        logo: EntryFieldTypes.AssetLink
+        description: EntryFieldTypes.Text
+        website: EntryFieldTypes.Text
     }
-] as const;
-
-export function partnersByName(...names: string[]): Partner[] {
-    return partners.filter(partner => names.includes(partner.name)).filter(Boolean);
 }
 
-export default partners;
+export async function getPartners() {
+    const entries = await contentfulClient.getEntries<PartnerSkeleton>({
+        content_type: "partner",
+        order: ["fields.name"]
+    });
+
+    const resolved = resolveResponse(entries) as Entry<PartnerSkeleton, undefined, string>[];
+    // resolve assets and entries
+    return resolvePartners(resolved);
+}
+
+export function resolvePartners(entries: Array<Entry<PartnerSkeleton, undefined, string>>): Promise<Partner[]> {
+    return Promise.all(entries.map(async (entry) => {
+        let partner: Partner = {
+            name: entry.fields.name as string,
+            logo: "",
+            description: entry.fields.description as string,
+            website: entry.fields.website as string
+        }
+        partner.logo = await getAssetUrl(entry.fields.logo) ?? '';
+        return partner;
+    }));
+}

@@ -4,17 +4,30 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^3.0.9",
+    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/ts-plugin": "^1.4.0",
+    "@contentful/rich-text-html-renderer": "^16.3.0",
     "@headlessui/react": "^1.7.18",
+    "@vercel/og": "^0.6.2",
+    "astro": "^4.2.0",
+    "astro-seo": "^0.8.0",
     "autoprefixer": "^10.4.16",
     "clsx": "^2.1.0",
+    "contentful": "^10.6.16",
+    "contentful-resolve-response": "^1.8.1",
+    "marked": "^11.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "sharp": "^0.33.2",
+    "sharp-ico": "^0.1.5",
     "swiper": "^11.0.5",
     "tailwind-merge": "^2.2.0",
     "tailwindcss": "^3.4.1",
@@ -23,15 +36,9 @@
   "devDependencies": {
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
+    "@types/contentful-resolve-response": "^0.1.33",
+    "@types/node": "^20.11.5",
     "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
-    "@typescript-eslint/eslint-plugin": "^6.14.0",
-    "@typescript-eslint/parser": "^6.14.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.55.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "@types/react-dom": "^18.2.17"
   }
 }
