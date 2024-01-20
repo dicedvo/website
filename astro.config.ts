@@ -16,6 +16,11 @@ export default defineConfig({
     }),
   ],
   vite: {
+    server: {
+      watch: {
+        ignored: ["**/src/generate_assets/**/*"], // HERE
+      },
+    },
     plugins: [
       Icons({
         compiler: 'jsx',

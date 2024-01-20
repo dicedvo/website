@@ -28,3 +28,6 @@ dist-ssr
 
 .env
 .env.production
+
+# Generated open graph images
+public/og

@@ -45,7 +45,7 @@ const engagements = await getEngagements();
 const partners = await getPartners();
 ---
 
-<Layout autoChangeHeader>
+<Layout ogTitle={meta.landingPage.heroTitle} ogDescription={meta.fullName} autoChangeHeader>
     {/* Hero */}
     <section
         style={{ backgroundImage: `url(${heroBg.src})` }}

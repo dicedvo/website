@@ -9,6 +9,7 @@ import { SEO } from "astro-seo";
 import Header from "../components/Header2.tsx"
 import Footer from "../components/Footer.astro"
 import "../styles/index.css"
+import { generateOgImage, getOgImageNameByUrl } from "../og";
 
 const appleTouchIcon = await getImage({
   src: faviconSrc,
@@ -22,12 +23,22 @@ const faviconSvg = await getImage({ src: faviconSvgSrc, format: 'svg' })
 interface Props {
   title?: string
   ogTitle?: string
+  ogDescription?: string
   description?: string
   autoChangeHeader?: boolean
 }
 
-const { title, ogTitle, description, autoChangeHeader = false } = Astro.props;
+const { title, ogTitle, ogDescription, description, autoChangeHeader = false } = Astro.props;
 const meta = await getMeta();
+
+// generate og image
+const ogImgPath = await generateOgImage({
+  url: Astro.url,
+  title: ogTitle ?? title ?? meta.shortName,
+  subtitle: ogDescription ?? description
+});
+
+const ogImgUrl = (new URL(ogImgPath, Astro.url.origin)).toString();
 ---
 
 <html lang="en">
@@ -45,15 +56,19 @@ const meta = await getMeta();
       titleTemplate={`%s - ${meta.fullName}`}
       titleDefault={`${meta.shortName} - ${meta.fullName}`}
       description={description ?? meta.description}
+      twitter={{
+        card: 'summary_large_image',
+        site: meta.fullName,
+      }}
       openGraph={{
         basic: {
           title: ogTitle ?? title ?? meta.shortName,
           type: 'website',
-          image: ''
+          image: ogImgUrl,
         },
         optional: {
           siteName: meta.fullName,
-        }
+        },
       }} />
   </head>
   <body class="font-sans antialiased text-black">
