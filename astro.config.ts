@@ -7,6 +7,7 @@ import tailwind from '@astrojs/tailwind'
 // Vite Plugins
 import Icons from 'unplugin-icons/vite'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
+import sitemap from '@astrojs/sitemap'
 
 export default defineConfig({
   site: 'https://dicedvo.org',
@@ -15,6 +16,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
+    sitemap()
   ],
   vite: {
     server: {
