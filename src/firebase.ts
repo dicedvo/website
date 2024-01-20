@@ -11,7 +11,8 @@ const firebaseConfig = {
   measurementId: import.meta.env.PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
-export const app = initializeApp(firebaseConfig);
-
-// Analytics
-export const analytics = getAnalytics(app);
+export function initializeFirebase() {
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  return { app, analytics };
+}
