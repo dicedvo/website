@@ -24,18 +24,19 @@ const faviconSvg = await getImage({ src: faviconSvgSrc, format: 'svg' })
 interface Props {
   title?: string
   ogTitle?: string
+  ogImageTitle?: string
   ogDescription?: string
   description?: string
   autoChangeHeader?: boolean
 }
 
-const { title, ogTitle, ogDescription, description, autoChangeHeader = false } = Astro.props;
+const { title, ogTitle, ogImageTitle, ogDescription, description, autoChangeHeader = false } = Astro.props;
 const meta = await getMeta();
 
 // generate og image
 const ogImgPath = await generateOgImage({
   url: Astro.url,
-  title: ogTitle ?? title ?? meta.shortName,
+  title: ogImageTitle ?? ogTitle ?? title ?? meta.shortName,
   subtitle: ogDescription ?? description
 });
 
