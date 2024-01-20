@@ -8,7 +8,7 @@ import grid from './assets/og/grid.png';
 const MontserratBlack = fs.readFileSync(path.resolve('./src/assets/fonts/Montserrat-Black.ttf'));
 const MontserratReqular = fs.readFileSync(path.resolve('./src/assets/fonts/Montserrat-Regular.ttf'));
 const logoBase64Url = `data:image/png;base64,${fs.readFileSync('./src/assets/og/logo.png', 'base64')}`;
-const iconsBase64Url = `data:image/png;base64,${fs.readFileSync('./src/assets/og/logo.png', 'base64')}`;
+const iconsBase64Url = `data:image/png;base64,${fs.readFileSync('./src/assets/og/icons.png', 'base64')}`;
 const gridBase64Url = `data:image/png;base64,${fs.readFileSync('./src/assets/og/grid.png', 'base64')}`;
 const fallbackHeroBgBase64Url = `data:image/png;base64,${fs.readFileSync('./src/assets/hero_bg.png', 'base64')}`;
 
