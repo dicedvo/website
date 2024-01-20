@@ -34,7 +34,7 @@ export default function FaqsAccordion({ questions }: {
                                 setCurrentOpenedIdx(cIdx => i === cIdx ? -1 : i);
                             }}
                             className="w-full py-4 px-8 flex items-center text-left justify-between">
-                            <p className="font-bold">{q.question}</p>
+                            <p className="flex-1 font-bold">{q.question}</p>
                             <ArrowDownIcon className={cn("ml-4", open && 'rotate-180')} />
                         </Disclosure.Button>
                         <Disclosure.Panel className="pb-4 px-8">
