@@ -1,0 +1,31 @@
+---
+import type { GetStaticPaths } from "astro";
+import { BLOCKS } from '@contentful/rich-text-types';
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import type { Page } from "../data/pages";
+import { getPages } from "../data/pages";
+import Layout from "../layouts/Page.astro";
+import { interpretShortcodeText } from "../shortcodes";
+
+export const getStaticPaths = (async () => {
+    const entries = await getPages();
+    const pages = entries.map((entry) => ({
+        params: { page: entry.fields.slug },
+        props: {
+            title: entry.fields.title,
+            subtitle: entry.fields.subtitle,
+            content: documentToHtmlString(entry.fields.content, {
+                renderNode: {
+                    [BLOCKS.PARAGRAPH]: interpretShortcodeText
+                }
+            }),
+        }
+    }));
+    return pages;
+}) satisfies GetStaticPaths;
+
+const { content, title, subtitle } = Astro.props;
+---
+<Layout title={title} subtitle={subtitle}>
+    <div class="prose mx-auto px-8 md:px-0 py-8 md:py-16" set:html={content} />
+</Layout>
