@@ -5,14 +5,22 @@ import { replace, type Shortcode } from '@wordpress/shortcode';
 const validShortcodeTags = ['html'];
 
 export function interpretShortcodeText(node: Block | Inline, next: Next): string {
-    if (node.content.length === 2 && node.content[0].nodeType === 'text' && node.content[1].nodeType === 'text') {
-        const text = node.content.map((n: Text) => n.value).join('');
+    let text = '';
+    if (node.content[0].nodeType === 'text') {
+        text = node.content[0].value;
+
+        if (text.endsWith('[') && 1 < node.content.length && node.content[1].nodeType === 'text' && node.content[1].value.startsWith('/')) {
+            text += node.content[1].value;
+        }
+    }
+
+    if (text.length > 0) {
         const extracted = parseShortcode(text);
-        
         if (extracted !== text) {
             return extracted;
         }
     }
+
     return '<p>' + next(node.content) + '</p>';
 }
 
