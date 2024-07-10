@@ -9,6 +9,8 @@ export const contentfulClient = contentful.createClient({
 });
 
 export async function getAssetUrl(unresolved: UnresolvedLink<"Asset"> | Asset<undefined, string>): Promise<string | null> {
+  if (!unresolved) return null;
+
   if ('fields' in unresolved) {
     return unresolved.fields.file?.url ?? null;
   }
