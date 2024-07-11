@@ -16,6 +16,10 @@ export const getStaticPaths = (async () => {
             subtitle: entry.fields.subtitle,
             content: documentToHtmlString(entry.fields.content, {
                 renderNode: {
+                    [BLOCKS.EMBEDDED_ASSET]: (node, next) => {
+                        const { title, file } = node.data.target.fields;
+                        return `<img src="${file.url}" alt="${title}" />`;
+                    },
                     [BLOCKS.PARAGRAPH]: interpretShortcodeText
                 }
             }),
