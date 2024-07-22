@@ -1,5 +1,5 @@
-import type { Community } from "../data/communities";
-import { cn } from "../utilities";
+import type { Community } from "../../data/communities";
+import { cn } from "../../utilities";
 
 export default function CommunityCard({ data, className }: { data: Community, className?: string }) {
     return (

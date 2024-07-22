@@ -1,31 +1,13 @@
 ---
 import Layout from "../layouts/Page.astro";
 
+import CommunitySearchResult from "../components/communities/CommunitySearchResult.tsx";
 import { getCommunities } from "../data/communities";
-import CommunityCard from "../components/CommunityCard";
-import DiceIcon from "../assets/dice-icon.png";
 
 const communities = await getCommunities();
 ---
 <Layout
     title="Communities"
     subtitle="Student tech organizations affiliated by DICE">
-    <div class="content-wrapper py-12">
-        <div class="flex flex-wrap items-stretch">
-            {communities.map(c => (
-                <div class="w-full md:w-1/2 lg:w-1/3 md:pt-16 pb-2 px-2">
-                    <CommunityCard data={c} className="h-full" />
-                </div>
-            ))}
-            <div class="w-full md:w-1/2 lg:w-1/3 md:pt-16 pb-2 px-2">
-                <CommunityCard className="h-full" data={{
-                    name: "Your community may be the next.",
-                    description: "Is your student organization based in Davao City and is interested in joining DICE? You may contact us by through our contact form.",
-                    logo: DiceIcon.src,
-                    buttonText: "Contact Us",
-                    url: "/#contact-us",
-                }} />
-            </div>
-        </div>
-    </div>
+    <CommunitySearchResult client:only communities={communities} />
 </Layout>
