@@ -12,7 +12,7 @@ const iconsBase64Url = `data:image/png;base64,${fs.readFileSync('./src/assets/og
 const gridBase64Url = `data:image/png;base64,${fs.readFileSync('./src/assets/og/grid.png', 'base64')}`;
 const fallbackHeroBgBase64Url = `data:image/png;base64,${fs.readFileSync('./src/assets/hero_bg.png', 'base64')}`;
 
-export async function generateOgImage({ url, image, title, subtitle }: {
+export async function _generateOgImage({ url, image, title, subtitle }: {
   url: URL,
   image?: ImageMetadata
   title: string
@@ -114,7 +114,7 @@ export async function generateOgImage({ url, image, title, subtitle }: {
     </div>
   );
 
-  const resp = new ImageResponse(html, {
+  return new ImageResponse(html, {
     width: 1200,
     height: 600,
     fonts: [
@@ -130,6 +130,15 @@ export async function generateOgImage({ url, image, title, subtitle }: {
       },
     ],
   });
+}
+
+export async function generateOgImage({ url, image, title, subtitle }: {
+  url: URL,
+  image?: ImageMetadata
+  title: string
+  subtitle?: string
+}) {
+  const resp = await _generateOgImage({ url, image, title, subtitle });
 
   // save buffer to file
   const filename = getOgImageNameByUrl(url);

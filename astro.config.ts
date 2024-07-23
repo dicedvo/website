@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config'
 // Astro Integrations
 import react from '@astrojs/react'
 import tailwind from '@astrojs/tailwind'
+import copyDir from './integrations/copy-dir'
 
 // Vite Plugins
 import Icons from 'unplugin-icons/vite'
@@ -16,7 +17,10 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap()
+    sitemap(),
+    copyDir([
+      './public/og'
+    ]),
   ],
   vite: {
     server: {
