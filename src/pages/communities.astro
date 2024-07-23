@@ -9,5 +9,5 @@ const communities = await getCommunities();
 <Layout
     title="Communities"
     subtitle="Student tech organizations affiliated by DICE">
-    <CommunitySearchResult client:only communities={communities} />
+    <CommunitySearchResult client:only="react" communities={communities} />
 </Layout>
